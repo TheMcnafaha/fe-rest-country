@@ -30,6 +30,7 @@ export default component$(() => {
     <>
       <div>New route works. Check this out: {id}</div>
       <h2>{country.value.common_name}</h2>
+      <img src={nation.flag} alt="" />
       <ul>
         {Object.keys(nation).map((item) => (
           <li key={item} class="text-xl">
