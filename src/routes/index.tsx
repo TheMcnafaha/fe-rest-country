@@ -1,7 +1,10 @@
 import { component$ } from "@builder.io/qwik";
 import { routeLoader$, type DocumentHead } from "@builder.io/qwik-city";
 import { CountrySelect } from "~/components/country-select/country-select";
-import { SimpleNation, TypeNation } from "~/components/nation/nation";
+import {
+  SimpleNation,
+  TypeNation,
+} from "~/components/simple-nation/simple-nation";
 import { SearchBar } from "~/components/search-bar/search-bar";
 import { SimpleNations } from "~/components/simple-nations/simple-nations";
 // ["DEU", "USA", "BRA", "ISL", "AFG", "ALA", "ALB", "DZA"]

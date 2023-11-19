@@ -1,6 +1,5 @@
 import { component$ } from "@builder.io/qwik";
-import { SimpleNation } from "../nation/nation";
-import type { TypeNation } from "../nation/nation";
+import { SimpleNation, TypeNation } from "../simple-nation/simple-nation";
 export interface SimpleNationsProps {
   nations: TypeNation[];
 }
