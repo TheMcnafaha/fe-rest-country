@@ -18,7 +18,7 @@ export const useCountryAPI = routeLoader$(async (requestEvent) => {
     region: country[0].region,
     capital: country[0].capital[0],
     population: country[0].population,
-    flag: country[0].flag,
+    flag: country[0].flags.svg,
   };
   return nation as Nation;
 });
@@ -32,7 +32,7 @@ export default component$(() => {
       <h2>{country.value.common_name}</h2>
       <ul>
         {Object.keys(nation).map((item) => (
-          <li key={item}>
+          <li key={item} class="text-xl">
             {item}: {nation[item as keyof Nation]}{" "}
           </li>
         ))}
