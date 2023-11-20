@@ -59,7 +59,6 @@ export const SelectOption = component$(
         ref={optionRef}
         role="option"
         tabIndex={disabled ? -1 : 0}
-        class="z-10"
         aria-disabled={disabled}
         aria-selected={optionValue === selectContext.selectedOptionSig.value}
         data-option-value={optionValue}

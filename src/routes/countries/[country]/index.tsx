@@ -35,6 +35,21 @@ export const useCountryAPI = routeLoader$(async (requestEvent) => {
   const allCurrencies = currenciesKey.reduce((total, key) => {
     return total + single.currencies[key].name + ",";
   }, "");
+  const allBorders = single.borders;
+  const magic = await fetch(
+    `https://restcountries.com/v3.1/alpha?codes=${allBorders}`,
+  );
+  const done = (await magic.json()) as Nation[];
+  const allLinkNations: LinkNation[] = done.map((nation) => {
+    return {
+      id: nation.cca3,
+      common_name: nation.name.common,
+    };
+  });
+  console.log("im magiv ", magic);
+  console.log("im done ", done);
+  console.log("im all ", allLinkNations);
+
   const nation: ExtendedNation = {
     official_name: country[0].name.official,
     native_name: single.name.nativeName[nativeKey].official,
@@ -44,7 +59,7 @@ export const useCountryAPI = routeLoader$(async (requestEvent) => {
     flag: country[0].flags.svg,
     tld: single.tld,
     currencies: allCurrencies,
-    border_nations: single.borders,
+    border_nations: allBorders,
   };
   return nation as Nation;
 });
