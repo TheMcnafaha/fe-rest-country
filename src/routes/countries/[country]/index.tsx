@@ -118,39 +118,44 @@ export default component$(() => {
 
   return (
     <>
-      <div>New route works. Check this out: {id}</div>
-      <h2>{nation.official_name}</h2>
-      <img src={nation.flag} alt="" />
-      <ul>
-        {firstDescription.map((key, index) => {
-          return (
-            <li>
-              {fDTitle[index]}: {nation[key]}
-            </li>
-          );
-        })}
-      </ul>
-      <ul>
-        {secondDescription.map((key, index) => {
-          return (
-            <li>
-              {sDTitle[index]}: {nation[key]}
-            </li>
-          );
-        })}
-      </ul>
-      <h3>Border Countries:</h3>
-      <ul>
-        {nation.border_nations.map((nation) => {
-          return (
-            <a href={`/countries/${nation.id}`}>
-              {" "}
-              <li>{nation.common_name}</li>
-            </a>
-          );
-        })}
-      </ul>
-      {/* 
+      <div class="flex max-w-xs flex-col gap-4 p-4">
+        <img src={nation.flag} alt="" />
+        <h2 class="font-bold">{nation.official_name}</h2>
+        <ul>
+          {firstDescription.map((key, index) => {
+            return (
+              <li>
+                <span class="font-bold">{fDTitle[index]}</span>: {nation[key]}
+              </li>
+            );
+          })}
+        </ul>
+        <ul>
+          {secondDescription.map((key, index) => {
+            return (
+              <li>
+                <span class="font-bold">{sDTitle[index]}</span>: {nation[key]}
+              </li>
+            );
+          })}
+        </ul>
+        <div class="mt-3">
+          <h4 class="mb-3">Border Countries:</h4>
+          <ul class="flex flex-wrap gap-4">
+            {nation.border_nations.map((nation) => {
+              return (
+                <a
+                  href={`/countries/${nation.id}`}
+                  class="justify-center rounded-sm bg-[white] px-3 py-1 drop-shadow-md"
+                >
+                  {" "}
+                  <li>{nation.common_name}</li>
+                </a>
+              );
+            })}
+          </ul>
+        </div>
+        {/* 
       <ul>
         {Object.keys(nation).map((item) => (
           <li key={item} class="text-xl">
@@ -158,6 +163,7 @@ export default component$(() => {
           </li>
         ))}
       </ul> */}
+      </div>
     </>
   );
 });
