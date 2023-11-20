@@ -39,17 +39,20 @@ export default component$(() => {
 
   return (
     <>
-      <SearchBar />
-      <CountrySelect />
-
-      <SimpleNations nations={help.value} />
-      <SimpleNation nation={help.value[0]} />
-      <h1>Hi 👋</h1>
-      <p>
-        Can't wait to see what you build with qwik!
-        <br />
-        Happy coding.
-      </p>
+      <div class="flex max-w-[300px] flex-col items-center px-4">
+        <SearchBar />
+        <CountrySelect />
+        <div class="-z-20">
+          <SimpleNations nations={help.value}></SimpleNations>
+          <SimpleNation nation={help.value[0]} />
+        </div>
+        <h1>Hi 👋</h1>
+        <p>
+          Can't wait to see what you build with qwik!
+          <br />
+          Happy coding.
+        </p>
+      </div>
     </>
   );
 });

@@ -10,22 +10,9 @@ SelectRoot;
 export const CountrySelect = component$<CountrySelectProps>((props) => {
   return (
     <>
-      <div>CountrySelect component works!</div>
-      <select
-        id="small"
-        class="mb-6 block w-full max-w-[200px] rounded-lg  border bg-[white] px-4 py-3 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-      >
-        <option selected>Filter by Region</option>
-        <option value="US">Africa</option>
-        <option value="CA">America</option>
-        <option value="FR">Asia</option>
-        <option value="DE">Europe</option>
-        <option value="DE">Oceania</option>
-      </select>
-
-      <SelectRoot>
-        <SelectTrigger class="flex items-center justify-between border-[1px] border-slate-200 p-4 dark:border-gray-600">
-          <SelectValue placeholder="Home" />
+      <SelectRoot class=" self-start rounded-md bg-[white] px-3 py-2 drop-shadow-sm">
+        <SelectTrigger class="flex items-center justify-between text-sm ">
+          <SelectValue placeholder="Filter by Region" class="mr-4" />
           <SelectMarker class="h-6 w-6">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -40,33 +27,21 @@ export const CountrySelect = component$<CountrySelectProps>((props) => {
             </svg>
           </SelectMarker>
         </SelectTrigger>
-        <SelectListBox class="border-[1px] border-slate-200 bg-slate-100 dark:border-gray-600 dark:bg-gray-700">
-          <SelectOption optionValue="Orders" class="p-4">
-            Axe
+        <SelectListBox class="z-30 mt-4 w-full bg-[white] drop-shadow-sm">
+          <SelectOption optionValue="Orders" class=" p-4">
+            Africa
           </SelectOption>
           <SelectOption optionValue="Orders" class="p-4">
-            Ore
+            America
           </SelectOption>
           <SelectOption optionValue="Orders" class="p-4">
-            ABBA💃👑
+            Asia
           </SelectOption>
           <SelectOption optionValue="Orders" class="p-4">
-            Opts
+            Europe
           </SelectOption>
           <SelectOption optionValue="Orders" class="p-4">
-            Await
-          </SelectOption>
-          <SelectOption optionValue="Orders" class="p-4">
-            Order
-          </SelectOption>
-          <SelectOption optionValue="Orders" class="p-4">
-            Abacus
-          </SelectOption>
-          <SelectOption optionValue="Orders" class="p-4">
-            Octopi
-          </SelectOption>
-          <SelectOption optionValue="Orders" class="p-4">
-            Cactus
+            Oceania
           </SelectOption>
         </SelectListBox>
       </SelectRoot>
