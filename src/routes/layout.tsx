@@ -16,12 +16,12 @@ export default component$(() => {
   return (
     <>
       <header>
-        <div class="flex justify-between">
+        <div class="flex justify-between ">
           <h1>Where in the world?</h1>
           <p> Dark Mode</p>
         </div>
       </header>
-      <main>
+      <main class="flex flex-col items-center">
         <Slot />
       </main>
     </>
