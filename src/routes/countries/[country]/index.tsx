@@ -1,5 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 import { routeLoader$, useLocation } from "@builder.io/qwik-city";
+import { BackButton } from "~/components/back-button/back-button";
 type QueryObj = {
   name: {
     common: string;
@@ -119,6 +120,7 @@ export default component$(() => {
   return (
     <>
       <div class="flex max-w-xs flex-col gap-4 p-4">
+        <BackButton />
         <img src={nation.flag} alt="" />
         <h2 class="font-bold">{nation.official_name}</h2>
         <ul>

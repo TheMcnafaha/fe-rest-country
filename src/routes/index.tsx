@@ -7,7 +7,6 @@ import {
 } from "~/components/simple-nation/simple-nation";
 import { SearchBar } from "~/components/search-bar/search-bar";
 import { SimpleNations } from "~/components/simple-nations/simple-nations";
-// ["DEU", "USA", "BRA", "ISL", "AFG", "ALA", "ALB", "DZA"]
 const defaults = ["DEU", "USA", "BRA", "ISL", "AFG", "ALA", "ALB", "DZA"];
 export const useDefaultContries = routeLoader$(async () => {
   const query = defaults.reduce((p, c) => {

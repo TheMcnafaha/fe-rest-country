@@ -17,7 +17,9 @@ export default component$(() => {
     <>
       <header class="mb-6 bg-[white] px-3 py-4">
         <div class="flex justify-between ">
-          <h1>Where in the world?</h1>
+          <a href="/">
+            <h1>Where in the world?</h1>
+          </a>
           <p> Dark Mode</p>
         </div>
       </header>
