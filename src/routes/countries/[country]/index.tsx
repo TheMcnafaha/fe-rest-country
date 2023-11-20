@@ -1,12 +1,27 @@
 import { component$ } from "@builder.io/qwik";
 import { routeLoader$, useLocation } from "@builder.io/qwik-city";
-type Nation = {
-  common_name: string;
+type QueryObj = {
+  name: {
+    common: string;
+    official: string;
+    nativeName: { [key: string]: { official: string } };
+  };
   region: string;
-  capital: string;
+  subregion: string;
+  languages: { [key: string]: string };
+  capital: Array<string>;
   population: number;
-  flag: string;
+  flags: {
+    png: string;
+    svg: string;
+    alt: string;
+  };
+  tld: Array<string>;
+  cca3: string;
+  currencies: { [key: string]: { name: string; symbol: string } };
+  borders: Array<string>;
 };
+type QueryResponse = Array<QueryObj>;
 type LinkNation = {
   id: string;
   common_name: string;
@@ -29,7 +44,7 @@ export const useCountryAPI = routeLoader$(async (requestEvent) => {
   const res = await fetch(
     `https://restcountries.com/v3.1/alpha?codes=${requestEvent.params.country}`,
   );
-  const country = await res.json();
+  const country = (await res.json()) as QueryResponse;
   const single = country[0];
   const nativeKey = Object.keys(single.name.nativeName)[0];
   const langKeys = Object.keys(single.languages);
@@ -44,7 +59,7 @@ export const useCountryAPI = routeLoader$(async (requestEvent) => {
   const magic = await fetch(
     `https://restcountries.com/v3.1/alpha?codes=${allBorders}`,
   );
-  const done = (await magic.json()) as Nation[];
+  const done = (await magic.json()) as QueryResponse;
   const allLinkNations: LinkNation[] = done.map((nation) => {
     return {
       id: nation.cca3,
@@ -71,7 +86,7 @@ export const useCountryAPI = routeLoader$(async (requestEvent) => {
     capital: country[0].capital[0],
     population: country[0].population,
     flag: country[0].flags.svg,
-    tld: single.tld,
+    tld: single.tld[0],
     currencies: toSentence(allCurrencies),
     border_nations: allLinkNations,
     languages: toSentence(allLangs),
@@ -89,6 +104,15 @@ export default component$(() => {
     "sub_region",
     "capital",
   ] as const;
+  const fDTitle = [
+    "Native Name",
+    "Population",
+    "Region",
+    "Sub Region",
+    "Capital",
+  ];
+
+  const sDTitle = ["Top Level Domain", "Currencies", "Languages"];
   const secondDescription = ["tld", "currencies", "languages"] as const;
   console.log("my fav nation ", nation);
 
@@ -98,19 +122,19 @@ export default component$(() => {
       <h2>{nation.official_name}</h2>
       <img src={nation.flag} alt="" />
       <ul>
-        {firstDescription.map((key) => {
+        {firstDescription.map((key, index) => {
           return (
             <li>
-              {key}: {nation[key]}
+              {fDTitle[index]}: {nation[key]}
             </li>
           );
         })}
       </ul>
       <ul>
-        {secondDescription.map((key) => {
+        {secondDescription.map((key, index) => {
           return (
             <li>
-              {key}: {nation[key]}
+              {sDTitle[index]}: {nation[key]}
             </li>
           );
         })}
