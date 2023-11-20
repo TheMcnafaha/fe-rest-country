@@ -7,18 +7,44 @@ type Nation = {
   population: number;
   flag: string;
 };
+type LinkNation = {
+  id: string;
+  common_name: string;
+};
+type ExtendedNation = {
+  official_name: string;
+  native_name: string;
+  sub_region: string;
+  capital: string;
+  population: number;
+  flag: string;
+  tld: string;
+  currencies: string;
+  languages: string[];
+  border_nations: LinkNation[];
+};
 export const useCountryAPI = routeLoader$(async (requestEvent) => {
   // This code runs only on the server, after every navigation
   const res = await fetch(
     `https://restcountries.com/v3.1/alpha?codes=${requestEvent.params.country}`,
   );
   const country = await res.json();
-  const nation: Nation = {
-    common_name: country[0].name.common,
-    region: country[0].region,
+  const single = country[0];
+  const nativeKey = Object.keys(single.name.nativeName)[0];
+  const currenciesKey = Object.keys(single.currencies);
+  const allCurrencies = currenciesKey.reduce((total, key) => {
+    return total + single.currencies[key].name + ",";
+  }, "");
+  const nation: ExtendedNation = {
+    official_name: country[0].name.official,
+    native_name: single.name.nativeName[nativeKey].official,
+    sub_region: country[0].subregion,
     capital: country[0].capital[0],
     population: country[0].population,
     flag: country[0].flags.svg,
+    tld: single.tld,
+    currencies: allCurrencies,
+    border_nations: single.borders,
   };
   return nation as Nation;
 });
@@ -26,6 +52,8 @@ export default component$(() => {
   const id = useLocation().params.country;
   const country = useCountryAPI();
   const nation = country.value;
+  console.log("my fav nation ", nation);
+
   return (
     <>
       <div>New route works. Check this out: {id}</div>
