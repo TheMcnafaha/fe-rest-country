@@ -147,7 +147,7 @@ export const SelectListBox = component$((props: SelectListBoxProps) => {
       style={`
         display: ${selectContextSignal.isOpenSig.value ? "block" : "none"};
         position: absolute;
-        z-index: 1;
+        z-index: 20;
         ${props.style}
       `}
       class={props.class}

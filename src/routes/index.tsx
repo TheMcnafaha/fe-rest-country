@@ -8,7 +8,7 @@ import {
 import { SearchBar } from "~/components/search-bar/search-bar";
 import { SimpleNations } from "~/components/simple-nations/simple-nations";
 // ["DEU", "USA", "BRA", "ISL", "AFG", "ALA", "ALB", "DZA"]
-const defaults = ["DEU", "USA"];
+const defaults = ["DEU", "USA", "BRA", "ISL", "AFG", "ALA", "ALB", "DZA"];
 export const useDefaultContries = routeLoader$(async () => {
   const query = defaults.reduce((p, c) => {
     return p + "," + c;
@@ -25,7 +25,9 @@ export const useDefaultContries = routeLoader$(async () => {
       capital: magic[index].capital[0],
       population: magic[index].population,
       flag: magic[index].flags.svg,
-    };
+      official_name: magic[index].name.official,
+      id: magic[index].cca3,
+    } as TypeNation;
     nations.push(element);
   }
 
@@ -39,10 +41,10 @@ export default component$(() => {
 
   return (
     <>
-      <div class="flex max-w-[300px] flex-col items-center px-4">
+      <div class="flex  flex-col items-center px-4">
         <SearchBar />
         <CountrySelect />
-        <div class="-z-20">
+        <div class="">
           <SimpleNations nations={help.value}></SimpleNations>
           <SimpleNation nation={help.value[0]} />
         </div>

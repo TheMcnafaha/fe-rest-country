@@ -8,7 +8,6 @@ export const SimpleNations = component$<SimpleNationsProps>(({ nations }) => {
   return (
     <>
       <ul>
-        {nations.length}
         {nations.map((nation) => {
           return <SimpleNation nation={nation} />;
         })}

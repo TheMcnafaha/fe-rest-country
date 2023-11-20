@@ -10,41 +10,43 @@ SelectRoot;
 export const CountrySelect = component$<CountrySelectProps>((props) => {
   return (
     <>
-      <SelectRoot class=" self-start rounded-md bg-[white] px-3 py-2 drop-shadow-sm">
-        <SelectTrigger class="flex items-center justify-between text-sm ">
-          <SelectValue placeholder="Filter by Region" class="mr-4" />
-          <SelectMarker class="h-6 w-6">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </SelectMarker>
-        </SelectTrigger>
-        <SelectListBox class="z-30 mt-4 w-full bg-[white] drop-shadow-sm">
-          <SelectOption optionValue="Orders" class=" p-4">
-            Africa
-          </SelectOption>
-          <SelectOption optionValue="Orders" class="p-4">
-            America
-          </SelectOption>
-          <SelectOption optionValue="Orders" class="p-4">
-            Asia
-          </SelectOption>
-          <SelectOption optionValue="Orders" class="p-4">
-            Europe
-          </SelectOption>
-          <SelectOption optionValue="Orders" class="p-4">
-            Oceania
-          </SelectOption>
-        </SelectListBox>
-      </SelectRoot>
+      <div class="z-30 flex w-full">
+        <SelectRoot class=" self-start rounded-md bg-[white] px-3 py-2 drop-shadow-sm">
+          <SelectTrigger class="flex items-center justify-between text-sm ">
+            <SelectValue placeholder="Filter by Region" class="mr-4" />
+            <SelectMarker class="h-6 w-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </SelectMarker>
+          </SelectTrigger>
+          <SelectListBox class="z-30 mt-4 w-full rounded-md bg-[white] drop-shadow-md">
+            <SelectOption optionValue="Orders" class=" z-10 p-4">
+              Africa
+            </SelectOption>
+            <SelectOption optionValue="Orders" class="p-4">
+              America
+            </SelectOption>
+            <SelectOption optionValue="Orders" class="p-4">
+              Asia
+            </SelectOption>
+            <SelectOption optionValue="Orders" class="p-4">
+              Europe
+            </SelectOption>
+            <SelectOption optionValue="Orders" class="p-4">
+              Oceania
+            </SelectOption>
+          </SelectListBox>
+        </SelectRoot>
+      </div>
     </>
   );
 });
