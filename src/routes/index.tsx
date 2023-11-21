@@ -31,7 +31,8 @@ export const useSearchCountry = routeAction$(async (props, { fail }) => {
     console.log("you suck ", magic);
     return fail(404, { message: "Country not found :(" });
   }
-  return { id: magic[0].cca3 };
+  const bewitched = magic as QueryResponse;
+  return { id: bewitched[0].cca3 };
 });
 export const useDefaultContries = routeLoader$(async () => {
   const query = defaults.reduce((p, c) => {
