@@ -1,5 +1,10 @@
 import { component$ } from "@builder.io/qwik";
-import { routeLoader$, type DocumentHead } from "@builder.io/qwik-city";
+import {
+  routeLoader$,
+  type DocumentHead,
+  Form,
+  routeAction$,
+} from "@builder.io/qwik-city";
 import { CountrySelect } from "~/components/country-select/country-select";
 import {
   SimpleNation,
@@ -8,6 +13,9 @@ import {
 import { SearchBar } from "~/components/search-bar/search-bar";
 import { SimpleNations } from "~/components/simple-nations/simple-nations";
 const defaults = ["DEU", "USA", "BRA", "ISL", "AFG", "ALA", "ALB", "DZA"];
+export const useSearchCountry = routeAction$(async (props) => {
+  console.log("me server is le data ", props);
+});
 export const useDefaultContries = routeLoader$(async () => {
   const query = defaults.reduce((p, c) => {
     return p + "," + c;
@@ -34,6 +42,7 @@ export const useDefaultContries = routeLoader$(async () => {
 });
 export default component$(() => {
   const help = useDefaultContries();
+  const searchBar = useSearchCountry();
   console.log("hlp ", help.value);
 
   // console.log(JSON.stringify(help));
@@ -41,7 +50,9 @@ export default component$(() => {
   return (
     <>
       <div class="flex  flex-col items-center px-4">
-        <SearchBar />
+        <Form action={searchBar}>
+          <SearchBar />
+        </Form>
         <CountrySelect />
         <div class="">
           <SimpleNations nations={help.value}></SimpleNations>

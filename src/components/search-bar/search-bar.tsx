@@ -15,7 +15,7 @@ export const SearchBar = component$<SearchBarProps>((props) => {
         placeholder="Search for a country..."
         type="search"
         id="site-search"
-        name="q"
+        name="query"
       />
     </label>
   );
