@@ -1,5 +1,4 @@
 import { component$ } from "@builder.io/qwik";
-
 export const SearchBar = component$(() => {
   return (
     <label
@@ -7,7 +6,7 @@ export const SearchBar = component$(() => {
       class="mb-3  flex rounded-md bg-[white] py-2 pl-4 drop-shadow-sm"
     >
       {" "}
-      <img src="glass-31179.svg" alt="search" />
+      <img src="glass-31179.svg" height={15} width={15} alt="search" />
       <input
         class="w-full rounded-md bg-[white] py-1 pl-3 pr-12 text-sm"
         placeholder="Search for a country..."

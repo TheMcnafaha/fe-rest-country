@@ -1,12 +1,11 @@
 import {
   component$,
-  QwikIntrinsicElements,
   useContext,
   useSignal,
   useVisibleTask$,
 } from "@builder.io/qwik";
 import SelectContextId from "./select-context-id";
-
+import { QwikIntrinsicElements } from "@builder.io/qwik";
 export type OptionProps = {
   // optionValue: Record<string, any> | string;
   optionValue: string;

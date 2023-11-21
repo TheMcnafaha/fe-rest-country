@@ -9,7 +9,8 @@ export const BackButton = component$(() => {
       }}
     >
       <button class="flex items-center gap-2 rounded-sm bg-[white] px-5 py-1 drop-shadow-lg">
-        <img src="/arrow-27323.svg" alt="arrow" height={23} width={23} /> Back
+        <object data="/arrow-27323.svg" height={23} width={23}></object>
+        Back
       </button>
     </div>
   );

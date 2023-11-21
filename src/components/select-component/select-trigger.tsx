@@ -1,11 +1,11 @@
 import {
   component$,
-  QwikIntrinsicElements,
   Slot,
   useContext,
   useSignal,
   useVisibleTask$,
 } from "@builder.io/qwik";
+import { QwikIntrinsicElements } from "@builder.io/qwik";
 import SelectContextId from "./select-context-id";
 
 export type SelectTriggerProps = QwikIntrinsicElements["button"];

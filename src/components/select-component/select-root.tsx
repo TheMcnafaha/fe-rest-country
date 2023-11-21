@@ -1,7 +1,6 @@
 import {
   $,
   component$,
-  QwikIntrinsicElements,
   Slot,
   useContextProvider,
   useOnDocument,
@@ -9,9 +8,10 @@ import {
   useStore,
   useVisibleTask$,
 } from "@builder.io/qwik";
+import { QwikIntrinsicElements } from "@builder.io/qwik";
 import { computePosition, flip } from "@floating-ui/dom";
 import SelectContextId from "./select-context-id";
-import { SelectContext } from "./select-context.type";
+import type { SelectContext } from "./select-context.type";
 import { NativeSelect } from "./select-native-select";
 import { VisuallyHidden } from "../utils/visually-hidden";
 
@@ -92,11 +92,11 @@ export const SelectRoot = component$((props: SelectRootProps) => {
       await updatePosition$(trigger, listBox);
       listBox.style.visibility = "visible";
       isListboxHiddenSig.value = false;
-      listBox?.focus();
+      listBox.focus();
     }
 
     if (expanded === false) {
-      trigger?.focus();
+      trigger.focus();
     }
   });
 

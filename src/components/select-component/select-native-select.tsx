@@ -1,9 +1,5 @@
-import {
-  $,
-  component$,
-  QwikIntrinsicElements,
-  useSignal,
-} from "@builder.io/qwik";
+import { $, component$, useSignal } from "@builder.io/qwik";
+import type { QwikIntrinsicElements } from "@builder.io/qwik";
 import SelectContextId from "./select-context-id";
 import { useContext } from "@builder.io/qwik";
 import { useOn } from "@builder.io/qwik";
