@@ -8,7 +8,7 @@ import {
   useStore,
   useVisibleTask$,
 } from "@builder.io/qwik";
-import { QwikIntrinsicElements } from "@builder.io/qwik";
+import type { QwikIntrinsicElements } from "@builder.io/qwik";
 import { computePosition, flip } from "@floating-ui/dom";
 import SelectContextId from "./select-context-id";
 import type { SelectContext } from "./select-context.type";
