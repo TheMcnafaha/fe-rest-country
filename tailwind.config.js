@@ -6,6 +6,9 @@ module.exports = {
       "light-gray": "hsl(0, 0%, 98%)",
       "dark-gray": "hsl(0, 0%, 52%)",
     },
+    fontFamily: {
+      nunito: ["Nunito Sans", "Open Sans"],
+    },
     extend: {},
   },
   plugins: [],

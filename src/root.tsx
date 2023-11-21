@@ -5,6 +5,9 @@ import {
   ServiceWorkerRegister,
 } from "@builder.io/qwik-city";
 import { RouterHead } from "./components/router-head/router-head";
+import "@fontsource/nunito-sans/300.css";
+import "@fontsource/nunito-sans/600.css";
+import "@fontsource/nunito-sans/800.css";
 
 import "./global.css";
 
@@ -23,7 +26,7 @@ export default component$(() => {
         <link rel="manifest" href="/manifest.json" />
         <RouterHead />
       </head>
-      <body lang="en" class="bg-light-gray -z-30 ">
+      <body lang="en" class="font-nunito -z-30  bg-light-gray">
         <RouterOutlet />
         <ServiceWorkerRegister />
       </body>

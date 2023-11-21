@@ -1,9 +1,11 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, useSignal } from "@builder.io/qwik";
 import {
   routeLoader$,
   type DocumentHead,
   Form,
   routeAction$,
+  RequestHandler,
+  useNavigate,
 } from "@builder.io/qwik-city";
 import { CountrySelect } from "~/components/country-select/country-select";
 import {
@@ -12,9 +14,24 @@ import {
 } from "~/components/simple-nation/simple-nation";
 import { SearchBar } from "~/components/search-bar/search-bar";
 import { SimpleNations } from "~/components/simple-nations/simple-nations";
+import { QueryObj, QueryResponse } from "./countries/[country]";
 const defaults = ["DEU", "USA", "BRA", "ISL", "AFG", "ALA", "ALB", "DZA"];
-export const useSearchCountry = routeAction$(async (props) => {
+type FailedResponse = {
+  status: number;
+  message: string;
+};
+export const useSearchCountry = routeAction$(async (props, { fail }) => {
   console.log("me server is le data ", props);
+  const response = await fetch(
+    "https://restcountries.com/v3.1/name/" + props.query,
+  );
+  const magic = (await response.json()) as QueryResponse | FailedResponse;
+  const isErrObj = Object.keys(magic).length == 2;
+  if (isErrObj) {
+    console.log("you suck ", magic);
+    return fail(404, { message: "Country not found :(" });
+  }
+  return { id: magic[0].cca3 };
 });
 export const useDefaultContries = routeLoader$(async () => {
   const query = defaults.reduce((p, c) => {
@@ -43,8 +60,11 @@ export const useDefaultContries = routeLoader$(async () => {
 export default component$(() => {
   const help = useDefaultContries();
   const searchBar = useSearchCountry();
+  const getSearch = useNavigate();
   console.log("hlp ", help.value);
-
+  if (searchBar.value?.id) {
+    getSearch(`/countries/${searchBar.value.id}`);
+  }
   // console.log(JSON.stringify(help));
 
   return (
@@ -52,6 +72,7 @@ export default component$(() => {
       <div class="flex  flex-col items-center px-4">
         <Form action={searchBar}>
           <SearchBar />
+          {searchBar.value?.failed && <p>{searchBar.value.message}</p>}
         </Form>
         <CountrySelect />
         <div class="">

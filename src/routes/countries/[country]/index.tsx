@@ -1,7 +1,7 @@
 import { component$ } from "@builder.io/qwik";
 import { routeLoader$, useLocation } from "@builder.io/qwik-city";
 import { BackButton } from "~/components/back-button/back-button";
-type QueryObj = {
+export type QueryObj = {
   name: {
     common: string;
     official: string;
@@ -22,7 +22,7 @@ type QueryObj = {
   currencies: { [key: string]: { name: string; symbol: string } };
   borders: Array<string>;
 };
-type QueryResponse = Array<QueryObj>;
+export type QueryResponse = Array<QueryObj>;
 type LinkNation = {
   id: string;
   common_name: string;
