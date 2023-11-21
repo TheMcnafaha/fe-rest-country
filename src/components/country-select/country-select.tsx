@@ -10,11 +10,11 @@ SelectRoot;
 export const CountrySelect = component$<CountrySelectProps>((props) => {
   return (
     <>
-      <div class="z-30 flex w-full">
-        <SelectRoot class=" self-start rounded-md bg-[white] px-3 py-2 drop-shadow-sm">
-          <SelectTrigger class="flex items-center justify-between text-sm ">
+      <div class="z-30 flex w-full font-semibold">
+        <SelectRoot class=" flex w-1/2   justify-between self-start rounded-md bg-[white] px-3 py-2 drop-shadow-sm">
+          <SelectTrigger class="flex w-full items-center justify-between text-sm ">
             <SelectValue placeholder="Filter by Region" class="mr-4" />
-            <SelectMarker class="h-6 w-4">
+            <SelectMarker class="flex h-6 w-4 ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"

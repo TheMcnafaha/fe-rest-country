@@ -122,12 +122,13 @@ export default component$(() => {
       <div class="flex max-w-xs flex-col gap-4 p-4">
         <BackButton />
         <img src={nation.flag} alt="" />
-        <h2 class="font-bold">{nation.official_name}</h2>
+        <h2 class="font-extrabold">{nation.official_name}</h2>
         <ul>
           {firstDescription.map((key, index) => {
             return (
               <li>
-                <span class="font-bold">{fDTitle[index]}</span>: {nation[key]}
+                <span class="font-semibold">{fDTitle[index]}</span>:{" "}
+                {nation[key]}
               </li>
             );
           })}
@@ -136,13 +137,14 @@ export default component$(() => {
           {secondDescription.map((key, index) => {
             return (
               <li>
-                <span class="font-bold">{sDTitle[index]}</span>: {nation[key]}
+                <span class="font-semibold">{sDTitle[index]}</span>:{" "}
+                {nation[key]}
               </li>
             );
           })}
         </ul>
         <div class="mt-3">
-          <h4 class="mb-3">Border Countries:</h4>
+          <h4 class="mb-3 font-semibold">Border Countries:</h4>
           <ul class="flex flex-wrap gap-4">
             {nation.border_nations.map((nation) => {
               return (

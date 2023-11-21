@@ -69,12 +69,12 @@ export default component$(() => {
 
   return (
     <>
+      <Form action={searchBar}>
+        <SearchBar />
+        {searchBar.value?.failed && <p>{searchBar.value.message}</p>}
+      </Form>
+      <CountrySelect />
       <div class="flex  flex-col items-center px-4">
-        <Form action={searchBar}>
-          <SearchBar />
-          {searchBar.value?.failed && <p>{searchBar.value.message}</p>}
-        </Form>
-        <CountrySelect />
         <div class="">
           <SimpleNations nations={help.value}></SimpleNations>
           <SimpleNation nation={help.value[0]} />

@@ -6,7 +6,7 @@ export const SearchBar = component$<SearchBarProps>((props) => {
   return (
     <label
       for="site-search"
-      class="mb-3  flex w-full rounded-md bg-[white] py-2 pl-4"
+      class="mb-3  flex rounded-md bg-[white] py-2 pl-4 drop-shadow-sm"
     >
       {" "}
       <img src="glass-31179.svg" alt="search" />

@@ -24,11 +24,11 @@ export const SimpleNation = component$<SimpleNationProps>(({ nation }) => {
         <a href={`countries/${nation.id}`} class="z-10">
           click here lol
         </a>
-        <h3 class="my-2 font-bold">{nation.common_name}</h3>
+        <h3 class="my-2 font-extrabold">{nation.common_name}</h3>
         <ul class=" text-sm">
           {pointKeys.map((item) => (
             <li key={item} class=" mb-2">
-              <span class="font-bold">{item}:</span>{" "}
+              <span class="font-semibold">{item}:</span>{" "}
               {nation[item as keyof TypeNation]}{" "}
             </li>
           ))}
