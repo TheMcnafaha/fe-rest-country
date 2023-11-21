@@ -1,5 +1,5 @@
 import { component$ } from "@builder.io/qwik";
-import { routeLoader$, useLocation } from "@builder.io/qwik-city";
+import { routeLoader$ } from "@builder.io/qwik-city";
 import { BackButton } from "~/components/back-button/back-button";
 export type QueryObj = {
   name: {
@@ -95,7 +95,6 @@ export const useCountryAPI = routeLoader$(async (requestEvent) => {
   return nation;
 });
 export default component$(() => {
-  const id = useLocation().params.country;
   const country = useCountryAPI();
   const nation = country.value;
   const firstDescription = [

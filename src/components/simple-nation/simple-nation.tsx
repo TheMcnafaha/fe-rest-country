@@ -1,5 +1,4 @@
 import { component$ } from "@builder.io/qwik";
-import { routeLoader$, useLocation } from "@builder.io/qwik-city";
 export type TypeNation = {
   common_name: string;
   id: string;

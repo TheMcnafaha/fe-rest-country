@@ -5,9 +5,8 @@ import { SelectValue } from "../select-component/select-value";
 import { SelectMarker } from "../select-component/select-marker";
 import { SelectListBox } from "../select-component/select-listbox";
 import { SelectOption } from "../select-component/select-option";
-export interface CountrySelectProps {}
 SelectRoot;
-export const CountrySelect = component$<CountrySelectProps>((props) => {
+export const CountrySelect = component$(() => {
   return (
     <>
       <div class="z-30 flex w-full font-semibold">

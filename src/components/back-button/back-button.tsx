@@ -1,8 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 
-export interface BackButtonProps {}
-
-export const BackButton = component$<BackButtonProps>(({}) => {
+export const BackButton = component$(() => {
   return (
     <div
       class="mb-10"

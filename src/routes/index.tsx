@@ -1,10 +1,9 @@
-import { component$, useSignal } from "@builder.io/qwik";
+import { component$ } from "@builder.io/qwik";
 import {
   routeLoader$,
   type DocumentHead,
   Form,
   routeAction$,
-  RequestHandler,
   useNavigate,
 } from "@builder.io/qwik-city";
 import { CountrySelect } from "~/components/country-select/country-select";
@@ -14,7 +13,7 @@ import {
 } from "~/components/simple-nation/simple-nation";
 import { SearchBar } from "~/components/search-bar/search-bar";
 import { SimpleNations } from "~/components/simple-nations/simple-nations";
-import { QueryObj, QueryResponse } from "./countries/[country]";
+import { QueryResponse } from "./countries/[country]";
 const defaults = ["DEU", "USA", "BRA", "ISL", "AFG", "ALA", "ALB", "DZA"];
 type FailedResponse = {
   status: number;

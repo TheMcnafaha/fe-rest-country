@@ -1,8 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 
-export interface SearchBarProps {}
-
-export const SearchBar = component$<SearchBarProps>((props) => {
+export const SearchBar = component$(() => {
   return (
     <label
       for="site-search"
