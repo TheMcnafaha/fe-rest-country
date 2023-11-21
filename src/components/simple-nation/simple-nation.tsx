@@ -18,7 +18,13 @@ export const SimpleNation = component$<SimpleNationProps>(({ nation }) => {
   const imgAlt = `flag of ${nation.common_name}`;
   return (
     <div class=" my-4 flex max-w-[260px] flex-col items-center rounded-md bg-[white] pb-4 drop-shadow-sm">
-      <img class="rounded-t-md" src={nation.flag} alt={imgAlt} />
+      <img
+        class="rounded-t-md"
+        width={260}
+        height={140}
+        src={nation.flag}
+        alt={imgAlt}
+      />
       <div class=" p-4">
         <a href={`countries/${nation.id}`} class="z-10">
           click here lol

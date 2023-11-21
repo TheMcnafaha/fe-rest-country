@@ -1,5 +1,6 @@
 import { component$ } from "@builder.io/qwik";
-import { SimpleNation, TypeNation } from "../simple-nation/simple-nation";
+import type { TypeNation } from "../simple-nation/simple-nation";
+import { SimpleNation } from "../simple-nation/simple-nation";
 export interface SimpleNationsProps {
   nations: TypeNation[];
 }
@@ -9,7 +10,7 @@ export const SimpleNations = component$<SimpleNationsProps>(({ nations }) => {
     <>
       <ul>
         {nations.map((nation) => {
-          return <SimpleNation nation={nation} />;
+          return <SimpleNation key={nation.id} nation={nation} />;
         })}
       </ul>
     </>

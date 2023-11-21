@@ -120,12 +120,12 @@ export default component$(() => {
     <>
       <div class="flex max-w-xs flex-col gap-4 p-4">
         <BackButton />
-        <img src={nation.flag} alt="" />
+        <img src={nation.flag} width={290} height={202} alt="" />
         <h2 class="font-extrabold">{nation.official_name}</h2>
         <ul>
           {firstDescription.map((key, index) => {
             return (
-              <li>
+              <li key={index}>
                 <span class="font-semibold">{fDTitle[index]}</span>:{" "}
                 {nation[key]}
               </li>
@@ -135,7 +135,7 @@ export default component$(() => {
         <ul>
           {secondDescription.map((key, index) => {
             return (
-              <li>
+              <li key={index}>
                 <span class="font-semibold">{sDTitle[index]}</span>:{" "}
                 {nation[key]}
               </li>
@@ -148,6 +148,7 @@ export default component$(() => {
             {nation.border_nations.map((nation) => {
               return (
                 <a
+                  key={nation.id}
                   href={`/countries/${nation.id}`}
                   class="justify-center rounded-sm bg-[white] px-3 py-1 drop-shadow-md"
                 >

@@ -9,11 +9,11 @@ import {
 import { CountrySelect } from "~/components/country-select/country-select";
 import {
   SimpleNation,
-  TypeNation,
+  type TypeNation,
 } from "~/components/simple-nation/simple-nation";
 import { SearchBar } from "~/components/search-bar/search-bar";
 import { SimpleNations } from "~/components/simple-nations/simple-nations";
-import { QueryResponse } from "./countries/[country]";
+import type { QueryResponse } from "./countries/[country]";
 const defaults = ["DEU", "USA", "BRA", "ISL", "AFG", "ALA", "ALB", "DZA"];
 type FailedResponse = {
   status: number;

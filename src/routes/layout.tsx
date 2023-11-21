@@ -21,13 +21,9 @@ export default component$(() => {
             <h1 class="font-extrabold">Where in the world?</h1>
           </a>
           <div class="flex gap-2">
-            <img
-              src="/moon.svg"
-              alt="moon icon"
-              width={20}
-              height={20}
-              class="rounded-full  "
-            />
+            <div class="flex  items-center">
+              <object data="/moon.svg" height={20} width={20}></object>
+            </div>
             <p class="font-semibold"> Dark Mode</p>
           </div>
         </div>
