@@ -5,9 +5,13 @@ import {
   useSignal,
   useVisibleTask$,
 } from "@builder.io/qwik";
-import { OptionProps } from "../autocomplete";
 import SelectContextId from "./select-context-id";
 
+export type OptionProps = {
+  // optionValue: Record<string, any> | string;
+  optionValue: string;
+  disabled?: boolean;
+} & QwikIntrinsicElements["li"];
 import { Slot } from "@builder.io/qwik";
 import { KeyCode } from "../utils";
 
