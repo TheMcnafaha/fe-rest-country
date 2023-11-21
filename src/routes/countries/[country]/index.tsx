@@ -56,17 +56,22 @@ export const useCountryAPI = routeLoader$(async (requestEvent) => {
   const allCurrencies = currenciesKeys.map((key) => {
     return single.currencies[key].name;
   });
-  const allBorders = single.borders;
-  const magic = await fetch(
-    `https://restcountries.com/v3.1/alpha?codes=${allBorders}`,
-  );
-  const done = (await magic.json()) as QueryResponse;
-  const allLinkNations: LinkNation[] = done.map((nation) => {
-    return {
-      id: nation.cca3,
-      common_name: nation.name.common,
-    };
-  });
+  // sometimes we have a valid country that doesn't have borders :(
+  // TODO: update TS type to accomadate this condition
+  const allBorders = single.borders as undefined | string[];
+  let allLinkNations: LinkNation[] = [];
+  if (allBorders) {
+    const magic = await fetch(
+      `https://restcountries.com/v3.1/alpha?codes=${allBorders}`,
+    );
+    const done = (await magic.json()) as QueryResponse;
+    allLinkNations = done.map((nation) => {
+      return {
+        id: nation.cca3,
+        common_name: nation.name.common,
+      };
+    });
+  }
   function toSentence(input: string[]) {
     if (input.length === 1) {
       return input[0];
@@ -75,8 +80,6 @@ export const useCountryAPI = routeLoader$(async (requestEvent) => {
       return p + ", " + c;
     });
   }
-  console.log("im magiv ", magic);
-  console.log("im done ", done);
   console.log("im all ", allLinkNations);
 
   const nation: ExtendedNation = {
