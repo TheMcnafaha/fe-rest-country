@@ -1,4 +1,11 @@
-import { component$, Slot } from "@builder.io/qwik";
+import {
+  component$,
+  Slot,
+  useOnWindow,
+  useSignal,
+  useVisibleTask$,
+  $,
+} from "@builder.io/qwik";
 import type { RequestHandler } from "@builder.io/qwik-city";
 
 export const onGet: RequestHandler = async ({ cacheControl }) => {
@@ -13,9 +20,25 @@ export const onGet: RequestHandler = async ({ cacheControl }) => {
 };
 
 export default component$(() => {
+  const isDarkMode = useSignal<boolean | undefined>(undefined);
+  useOnWindow(
+    "load",
+    $((event) => {
+      console.log("we loaded");
+      if (isDarkMode.value === undefined) {
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          isDarkMode.value = true;
+          document.documentElement.classList.add("dark");
+          localStorage.setItem("theme", "true");
+        } else {
+          isDarkMode.value = false;
+        }
+      }
+    }),
+  );
   return (
     <>
-      <header class=" dark:bg-dark-blue mb-6 flex justify-center bg-[white] px-3 py-4 drop-shadow ">
+      <header class=" mb-6 flex justify-center bg-[white] px-3 py-4 drop-shadow dark:bg-dark-blue ">
         <div class="flex w-full max-w-md  justify-between lg:max-w-5xl">
           <a href="/">
             <h1 class="font-extrabold">Where in the world?</h1>
@@ -23,8 +46,9 @@ export default component$(() => {
           <div
             class="flex cursor-pointer gap-3"
             onClick$={() => {
-              console.log("change theme ", localStorage.theme);
+              console.log("change theme ", isDarkMode.value);
               document.documentElement.classList.toggle("dark");
+              isDarkMode.value = !isDarkMode.value;
             }}
           >
             <span class="flex cursor-pointer items-center">
