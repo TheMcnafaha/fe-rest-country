@@ -26,7 +26,10 @@ export default component$(() => {
         <link rel="manifest" href="/manifest.json" />
         <RouterHead />
       </head>
-      <body lang="en" class="font-nunito -z-30  bg-light-gray">
+      <body
+        lang="en"
+        class="font-nunito dark:bg-very-dark-blue -z-30  dark:text-[white]"
+      >
         <RouterOutlet />
         <ServiceWorkerRegister />
       </body>

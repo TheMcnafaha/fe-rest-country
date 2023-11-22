@@ -15,20 +15,33 @@ export const onGet: RequestHandler = async ({ cacheControl }) => {
 export default component$(() => {
   return (
     <>
-      <header class="mb-6 flex justify-center bg-[white] px-3 py-4">
+      <header class=" dark:bg-dark-blue mb-6 flex justify-center bg-[white] px-3 py-4 ">
         <div class="flex w-full  max-w-md justify-between">
           <a href="/">
             <h1 class="font-extrabold">Where in the world?</h1>
           </a>
-          <div class="flex gap-2">
-            <div class="flex  items-center">
-              <object data="/moon.svg" height={20} width={20}></object>
-            </div>
-            <p class="font-semibold"> Dark Mode</p>
+          <div
+            class="flex cursor-pointer gap-3"
+            onClick$={() => {
+              console.log("change theme ", localStorage.theme);
+              document.documentElement.classList.toggle("dark");
+            }}
+          >
+            <span class="flex cursor-pointer items-center">
+              <object
+                class="block cursor-pointer"
+                data="/moon.svg"
+                height={20}
+                width={20}
+              ></object>
+            </span>
+            <button class="flex gap-2" onClick$={() => {}}>
+              Dark Mode
+            </button>
           </div>
         </div>
       </header>
-      <main class="flex flex-col items-center px-3">
+      <main class="  flex flex-col items-center px-3">
         <div class=" flex w-full  max-w-md flex-col ">
           <Slot />
         </div>

@@ -17,7 +17,7 @@ export const SimpleNation = component$<SimpleNationProps>(({ nation }) => {
   const pointKeys = ["population", "region", "capital"];
   const imgAlt = `flag of ${nation.common_name}`;
   return (
-    <div class=" my-4 flex max-w-[260px] flex-col items-center rounded-md bg-[white] pb-4 drop-shadow-sm">
+    <div class=" dark:bg-dark-blue my-4 flex max-w-[260px] flex-col items-center rounded-md bg-[white] pb-4 drop-shadow-sm">
       <img
         class="rounded-t-md"
         width={260}
