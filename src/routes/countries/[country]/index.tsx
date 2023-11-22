@@ -121,47 +121,58 @@ export default component$(() => {
 
   return (
     <>
-      <div class="flex max-w-xs flex-col gap-4 p-4">
-        <BackButton />
-        <img src={nation.flag} width={290} height={202} alt="" />
+      <div class="mb-4  flex w-full    flex-col items-center gap-4 self-center py-8">
+        <div class="self-start">
+          <BackButton />
+        </div>
+        <img
+          src={nation.flag}
+          width={290}
+          height={202}
+          alt=""
+          class="bg-dark-gray drop-shadow-sm "
+        />
         <h2 class="font-extrabold">{nation.official_name}</h2>
-        <ul>
-          {firstDescription.map((key, index) => {
-            return (
-              <li key={index}>
-                <span class="font-semibold">{fDTitle[index]}</span>:{" "}
-                {nation[key]}
-              </li>
-            );
-          })}
-        </ul>
-        <ul>
-          {secondDescription.map((key, index) => {
-            return (
-              <li key={index}>
-                <span class="font-semibold">{sDTitle[index]}</span>:{" "}
-                {nation[key]}
-              </li>
-            );
-          })}
-        </ul>
-        <div class="mt-3">
-          <h4 class="mb-3 font-semibold">Border Countries:</h4>
-          <ul class="flex flex-wrap gap-4">
-            {nation.border_nations.map((nation) => {
+        <div>
+          <ul class="mb-6">
+            {firstDescription.map((key, index) => {
               return (
-                <a
-                  key={nation.id}
-                  href={`/countries/${nation.id}`}
-                  class="justify-center rounded-sm bg-[white] px-3 py-1 drop-shadow-md"
-                >
-                  {" "}
-                  <li>{nation.common_name}</li>
-                </a>
+                <li key={index}>
+                  <span class="font-semibold">{fDTitle[index]}</span>:{" "}
+                  {nation[key]}
+                </li>
               );
             })}
           </ul>
+          <ul class="mb-6">
+            {secondDescription.map((key, index) => {
+              return (
+                <li key={index}>
+                  <span class="font-semibold">{sDTitle[index]}</span>:{" "}
+                  {nation[key]}
+                </li>
+              );
+            })}
+          </ul>
+          <div class="mt-3">
+            <h4 class="mb-3 font-semibold">Border Countries:</h4>
+            <ul class="flex flex-wrap gap-4">
+              {nation.border_nations.map((nation) => {
+                return (
+                  <a
+                    key={nation.id}
+                    href={`/countries/${nation.id}`}
+                    class="justify-center rounded-sm bg-[white] px-3 py-1 drop-shadow-md"
+                  >
+                    {" "}
+                    <li>{nation.common_name}</li>
+                  </a>
+                );
+              })}
+            </ul>
+          </div>
         </div>
+
         {/* 
       <ul>
         {Object.keys(nation).map((item) => (
