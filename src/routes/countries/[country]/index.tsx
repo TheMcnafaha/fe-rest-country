@@ -162,7 +162,7 @@ export default component$(() => {
                   <a
                     key={nation.id}
                     href={`/countries/${nation.id}`}
-                    class="justify-center rounded-sm bg-[white] px-3 py-1 drop-shadow-md"
+                    class="dark:bg-dark-blue justify-center rounded-sm bg-[white] px-3 py-1 drop-shadow-md"
                   >
                     {" "}
                     <li>{nation.common_name}</li>
@@ -172,15 +172,6 @@ export default component$(() => {
             </ul>
           </div>
         </div>
-
-        {/* 
-      <ul>
-        {Object.keys(nation).map((item) => (
-          <li key={item} class="text-xl">
-            {item}: {nation[item as keyof Nation]}{" "}
-          </li>
-        ))}
-      </ul> */}
       </div>
     </>
   );

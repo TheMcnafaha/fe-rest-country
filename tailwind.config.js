@@ -12,7 +12,9 @@ module.exports = {
     fontFamily: {
       nunito: ["Nunito Sans", "Open Sans"],
     },
-    extend: {},
+    extend: {
+      backgroundImage: {},
+    },
   },
   plugins: [],
   darkMode: "class",

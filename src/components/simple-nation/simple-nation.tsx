@@ -15,16 +15,12 @@ export interface SimpleNationProps {
 export const SimpleNation = component$<SimpleNationProps>(({ nation }) => {
   // const nation = country.value;
   const pointKeys = ["population", "region", "capital"];
-  const imgAlt = `flag of ${nation.common_name}`;
   return (
     <div class=" dark:bg-dark-blue my-4 flex max-w-[260px] flex-col items-center rounded-md bg-[white] pb-4 drop-shadow-sm">
-      <img
-        class="rounded-t-md"
-        width={260}
-        height={140}
-        src={nation.flag}
-        alt={imgAlt}
-      />
+      <div
+        style={{ "--image-url": `url(${nation.flag})` }}
+        class="h-[150px] w-full rounded-t-md bg-[image:var(--image-url)] bg-cover bg-center"
+      ></div>
       <div class=" p-4">
         <a href={`countries/${nation.id}`} class="z-10">
           click here lol

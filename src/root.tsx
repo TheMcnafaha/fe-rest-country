@@ -28,7 +28,7 @@ export default component$(() => {
       </head>
       <body
         lang="en"
-        class="font-nunito dark:bg-very-dark-blue -z-30  dark:text-[white]"
+        class="font-nunito dark:bg-very-dark-blue -z-30 bg-light-gray  dark:text-[white]"
       >
         <RouterOutlet />
         <ServiceWorkerRegister />

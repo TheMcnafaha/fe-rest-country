@@ -95,8 +95,8 @@ export default component$(() => {
         {searchBar.value?.failed && <p>{searchBar.value.message}</p>}
       </Form>
       <CountrySelect />
-      <div class="flex  flex-col items-center px-4">
-        <div class="">
+      <div class="flex  flex-col items-center px-4 lg:px-0">
+        <div class="w-full">
           <SimpleNations nations={help.value}></SimpleNations>
           <SimpleNation nation={help.value[0]} />
         </div>

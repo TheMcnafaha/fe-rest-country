@@ -15,8 +15,8 @@ export const onGet: RequestHandler = async ({ cacheControl }) => {
 export default component$(() => {
   return (
     <>
-      <header class=" dark:bg-dark-blue mb-6 flex justify-center bg-[white] px-3 py-4 ">
-        <div class="flex w-full  max-w-md justify-between">
+      <header class=" dark:bg-dark-blue mb-6 flex justify-center bg-[white] px-3 py-4 drop-shadow ">
+        <div class="flex w-full max-w-md  justify-between lg:max-w-5xl">
           <a href="/">
             <h1 class="font-extrabold">Where in the world?</h1>
           </a>
@@ -42,7 +42,7 @@ export default component$(() => {
         </div>
       </header>
       <main class="  flex flex-col items-center px-3">
-        <div class=" flex w-full  max-w-md flex-col ">
+        <div class=" flex w-full max-w-md  flex-col lg:max-w-5xl ">
           <Slot />
         </div>
       </main>
