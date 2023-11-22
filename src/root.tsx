@@ -25,10 +25,33 @@ export default component$(() => {
         <meta charSet="utf-8" />
         <link rel="manifest" href="/manifest.json" />
         <RouterHead />
+        <script
+          dangerouslySetInnerHTML={`
+        (function() {
+
+if (
+  window.matchMedia("(prefers-color-scheme: dark)").matches &&
+  localStorage.getItem("theme") === undefined
+) {
+  document.documentElement.classList.add("dark");
+  localStorage.setItem("theme", "dark");
+} else {
+  if (localStorage.getItem("theme") === "dark") {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
+}
+})();
+window.addEventListener('load', function() {
+        }
+        );
+        `}
+        ></script>
       </head>
       <body
         lang="en"
-        class="font-nunito dark:bg-very-dark-blue -z-30 bg-light-gray  dark:text-[white]"
+        class="-z-30 bg-light-gray font-nunito dark:bg-very-dark-blue  dark:text-[white]"
       >
         <RouterOutlet />
         <ServiceWorkerRegister />
