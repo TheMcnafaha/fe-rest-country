@@ -34,7 +34,11 @@ type ExtendedNation = {
   sub_region: string;
   capital: string;
   population: number;
-  flag: string;
+  flags: {
+    png: string;
+    svg: string;
+    alt: string;
+  };
   tld: string;
   currencies: string;
   languages: string;
@@ -89,7 +93,7 @@ export const useCountryAPI = routeLoader$(async (requestEvent) => {
     region: single.region,
     capital: country[0].capital[0],
     population: country[0].population,
-    flag: country[0].flags.svg,
+    flags: country[0].flags,
     tld: single.tld[0],
     currencies: toSentence(allCurrencies),
     border_nations: allLinkNations,
@@ -121,18 +125,20 @@ export default component$(() => {
 
   return (
     <>
-      <div class="mb-4  flex w-full    flex-col items-center gap-4 self-center py-8">
+      <div class="mb-4  flex w-full     flex-col items-center gap-4 self-center py-8">
         <div class="self-start">
           <BackButton />
         </div>
-        <div class="lg:flex lg:justify-between lg:gap-12">
+        <div class="lg:flex lg:w-full lg:justify-between lg:gap-12">
           <img
-            src={nation.flag}
+            src={nation.flags.svg}
             alt={`flag of ${nation.official_name}`}
-            class="h-[202px] w-[290px] bg-dark-gray drop-shadow-sm  "
+            class="  max-h-[300px] max-w-[50%] bg-dark-gray drop-shadow-sm  "
           />
-          <div class="w-1/2">
-            <h2 class="font-extrabold lg:col-span-2">{nation.official_name}</h2>
+          <div class="lg:flex lg:w-1/2 lg:flex-col lg:justify-center">
+            <h2 class="mb-4 font-extrabold lg:col-span-2">
+              {nation.official_name}
+            </h2>
             <div>
               <div class="lg:flex lg:gap-6">
                 <ul class="mb-6 lg:w-1/2">
