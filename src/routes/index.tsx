@@ -13,10 +13,7 @@ import {
   useNavigate,
 } from "@builder.io/qwik-city";
 import { CountrySelect } from "~/components/country-select/country-select";
-import {
-  SimpleNation,
-  type TypeNation,
-} from "~/components/simple-nation/simple-nation";
+import { type TypeNation } from "~/components/simple-nation/simple-nation";
 import { SearchBar } from "~/components/search-bar/search-bar";
 import { SimpleNations } from "~/components/simple-nations/simple-nations";
 import type { QueryResponse } from "./countries/[country]";
@@ -81,7 +78,7 @@ export default component$(() => {
     $(async () => {
       localStorage.setItem("working", "success");
       const local = localStorage.getItem("nations");
-      if (local === undefined || local === null) {
+      if (local === null) {
         const res = await fetch("https://restcountries.com/v3.1/all");
         const data = (await res.json()) as QueryResponse;
         const correct: TypeNation[] = data.map((e) => {
