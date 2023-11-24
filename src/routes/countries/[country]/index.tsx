@@ -20,7 +20,7 @@ export type QueryObj = {
   tld: Array<string>;
   cca3: string;
   currencies: { [key: string]: { name: string; symbol: string } };
-  borders: Array<string>;
+  borders: Array<string> | undefined;
 };
 export type QueryResponse = Array<QueryObj>;
 type LinkNation = {
@@ -42,7 +42,7 @@ type ExtendedNation = {
   tld: string;
   currencies: string;
   languages: string;
-  border_nations: LinkNation[];
+  border_nations: LinkNation[] | undefined;
 };
 export const useCountryAPI = routeLoader$(async (requestEvent) => {
   // This code runs only on the server, after every navigation
@@ -167,18 +167,19 @@ export default component$(() => {
             <div class="mt-3">
               <h4 class="mb-3 font-semibold">Border Countries:</h4>
               <ul class="flex flex-wrap gap-4">
-                {nation.border_nations.map((nation) => {
-                  return (
-                    <a
-                      key={nation.id}
-                      href={`/countries/${nation.id}`}
-                      class="justify-center rounded-sm bg-[white] px-3 py-1 drop-shadow-md dark:bg-dark-blue"
-                    >
-                      {" "}
-                      <li>{nation.common_name}</li>
-                    </a>
-                  );
-                })}
+                {nation.border_nations !== undefined &&
+                  nation.border_nations.map((nation) => {
+                    return (
+                      <a
+                        key={nation.id}
+                        href={`/countries/${nation.id}`}
+                        class="justify-center rounded-sm bg-[white] px-3 py-1 drop-shadow-md dark:bg-dark-blue"
+                      >
+                        {" "}
+                        <li>{nation.common_name}</li>
+                      </a>
+                    );
+                  })}
               </ul>
             </div>
           </div>
