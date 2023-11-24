@@ -93,11 +93,17 @@ export default component$(() => {
             flag: e.flags.svg,
           };
         });
+        nations.value = correct;
         localStorage.setItem("nations", JSON.stringify(correct));
+        console.log("setting cache");
         console.log(localStorage.getItem("nations"));
       } else {
         // const magic = await JSON.parse(local);
-        nations.value = "daf";
+        if (nations.value === undefined) {
+          console.log("loading cache");
+
+          nations.value === JSON.parse(local);
+        }
       }
     }),
   );
