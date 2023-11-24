@@ -68,6 +68,8 @@ export default component$(() => {
   const searchBar = useSearchCountry();
   const getSearch = useNavigate();
   const nations = useSignal<undefined | TypeNation[]>(undefined);
+  const isArr = nations.value !== undefined;
+  const trigger = useSignal(false);
   console.log("hlp ", help.value);
   if (searchBar.value?.id) {
     getSearch(`/countries/${searchBar.value.id}`);
@@ -101,14 +103,14 @@ export default component$(() => {
         // const magic = await JSON.parse(local);
         if (nations.value === undefined) {
           console.log("loading cache");
-
-          nations.value === JSON.parse(local);
+          nations.value = JSON.parse(local);
         }
       }
+      trigger.value = !trigger.value;
     }),
   );
   useTask$(({ track }) => {
-    track(() => nations.value);
+    track(() => trigger.value);
     console.log("nations are this: ", nations.value);
   });
   return (
@@ -120,8 +122,7 @@ export default component$(() => {
       <CountrySelect />
       <div class="flex  flex-col items-center px-4 lg:px-0">
         <div class="w-full">
-          <SimpleNations nations={help.value}></SimpleNations>
-          <SimpleNation nation={help.value[0]} />
+          {isArr && <SimpleNations nations={help.value}></SimpleNations>}
         </div>
         <h1>Hi 👋</h1>
         <p>
