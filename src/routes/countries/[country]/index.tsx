@@ -10,7 +10,7 @@ export type QueryObj = {
   region: string;
   subregion: string;
   languages: { [key: string]: string };
-  capital: Array<string>;
+  capital: string;
   population: number;
   flags: {
     png: string;
