@@ -1,4 +1,10 @@
-import { component$ } from "@builder.io/qwik";
+import {
+  component$,
+  useOnDocument,
+  $,
+  useSignal,
+  useTask$,
+} from "@builder.io/qwik";
 import {
   routeLoader$,
   type DocumentHead,
@@ -61,12 +67,44 @@ export default component$(() => {
   const help = useDefaultContries();
   const searchBar = useSearchCountry();
   const getSearch = useNavigate();
+  const nations = useSignal<undefined | TypeNation[]>(undefined);
   console.log("hlp ", help.value);
   if (searchBar.value?.id) {
     getSearch(`/countries/${searchBar.value.id}`);
   }
   // console.log(JSON.stringify(help));
 
+  useOnDocument(
+    "load",
+    $(async () => {
+      localStorage.setItem("working", "success");
+      const local = localStorage.getItem("nations");
+      if (local === undefined || local === null) {
+        const res = await fetch("https://restcountries.com/v3.1/all");
+        const data = (await res.json()) as QueryResponse;
+        const correct: TypeNation[] = data.map((e) => {
+          return {
+            common_name: e.name.common,
+            id: e.cca3,
+            official_name: e.name.official,
+            region: e.region,
+            capital: e.capital,
+            population: e.population,
+            flag: e.flags.svg,
+          };
+        });
+        localStorage.setItem("nations", JSON.stringify(correct));
+        console.log(localStorage.getItem("nations"));
+      } else {
+        // const magic = await JSON.parse(local);
+        nations.value = "daf";
+      }
+    }),
+  );
+  useTask$(({ track }) => {
+    track(() => nations.value);
+    console.log("nations are this: ", nations.value);
+  });
   return (
     <>
       <Form action={searchBar}>
