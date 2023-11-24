@@ -119,7 +119,7 @@ export default component$(() => {
       <CountrySelect />
       <div class="flex  flex-col items-center px-4 lg:px-0">
         <div class="w-full">
-          {isArr && <SimpleNations nations={help.value}></SimpleNations>}
+<SimpleNations nations={help.value}></SimpleNations>
         </div>
         <h1>Hi 👋</h1>
         <p>
