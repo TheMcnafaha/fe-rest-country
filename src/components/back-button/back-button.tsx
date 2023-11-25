@@ -15,11 +15,10 @@ export const BackButton = component$(() => {
         history.back();
       }}
     >
-      <button class="dark:bg-dark-blue flex items-center gap-2 rounded-sm bg-[white] px-5 py-1 drop-shadow-lg">
+      <button class="flex items-center gap-2 rounded-sm bg-[white] px-5 py-1 drop-shadow-lg dark:bg-dark-blue lg:text-lg">
         <object data="/arrow-27323.svg" height={23} width={23}></object>
         Back
       </button>
-      {`${isDarkMode}`}
     </div>
   );
 });

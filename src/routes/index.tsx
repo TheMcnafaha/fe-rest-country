@@ -113,12 +113,6 @@ export default component$(() => {
         <div class="w-full">
           <SimpleNations nations={help.value}></SimpleNations>
         </div>
-        <h1>Hi 👋</h1>
-        <p>
-          Can't wait to see what you build with qwik!
-          <br />
-          Happy coding.
-        </p>
       </div>
     </>
   );

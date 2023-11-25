@@ -134,11 +134,11 @@ export default component$(() => {
             <img
               src={nation.flags.svg}
               alt={`flag of ${nation.official_name}`}
-              class="  max-h-[300px] max-w-full bg-dark-gray drop-shadow-sm  "
+              class="h-full w-full bg-dark-gray drop-shadow-sm  "
             />
           </div>
           <div class="lg:flex lg:w-1/2 lg:flex-col lg:justify-center">
-            <h2 class="mb-4 font-extrabold lg:col-span-2 lg:text-4xl">
+            <h2 class="mb-4 font-extrabold lg:col-span-2 lg:mb-8 lg:text-4xl">
               {nation.official_name}
             </h2>
             <div>
@@ -175,7 +175,7 @@ export default component$(() => {
                       <a
                         key={nation.id}
                         href={`/countries/${nation.id}`}
-                        class="justify-center rounded-sm bg-[white] px-3 py-1 drop-shadow-md dark:bg-dark-blue"
+                        class="justify-center rounded-sm bg-[white] px-3 py-1 drop-shadow-md dark:bg-dark-blue lg:text-lg"
                       >
                         {" "}
                         <li>{nation.common_name}</li>

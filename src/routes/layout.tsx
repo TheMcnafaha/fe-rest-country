@@ -15,7 +15,7 @@ export const onGet: RequestHandler = async ({ cacheControl }) => {
 export default component$(() => {
   return (
     <>
-      <header class=" mb-6 flex justify-center bg-[white] px-3 py-4 drop-shadow dark:bg-dark-blue ">
+      <header class=" mb-6 flex justify-center bg-[white] px-3 py-4 drop-shadow dark:bg-dark-blue lg:text-xl ">
         <div class="flex w-full max-w-md  justify-between lg:max-w-5xl">
           <a href="/">
             <h1 class="font-extrabold">Where in the world?</h1>
