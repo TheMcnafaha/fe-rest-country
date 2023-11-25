@@ -18,18 +18,20 @@ export const SimpleNation = component$<SimpleNationProps>(({ nation }) => {
   return (
     <a
       href={`countries/${nation.id}`}
-      class=" my-4 flex max-w-[260px] flex-col items-center rounded-md bg-[white] pb-4 drop-shadow-sm dark:bg-dark-blue"
+      class=" my-4 flex w-full max-w-[260px] flex-col items-center rounded-md bg-[white] pb-4 drop-shadow-sm dark:bg-dark-blue"
     >
       <div
         style={{ "--image-url": `url(${nation.flag})` }}
         class=" h-[150px] w-full rounded-t-md bg-dark-gray bg-[image:var(--image-url)] bg-cover bg-center"
       ></div>
-      <div class=" p-4">
-        <h3 class="my-2 font-extrabold">{nation.common_name}</h3>
-        <ul class=" text-sm">
+      <div class=" self-start px-8 py-4">
+        <h3 class="my-2 text-xl font-extrabold">{nation.common_name}</h3>
+        <ul class=" ">
           {pointKeys.map((item) => (
             <li key={item} class=" mb-2">
-              <span class="font-semibold">{item}:</span>{" "}
+              <span class="font-semibold">
+                {item[0].toLocaleUpperCase() + item.substring(1)}:
+              </span>{" "}
               {nation[item as keyof TypeNation]}{" "}
             </li>
           ))}

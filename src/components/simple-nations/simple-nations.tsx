@@ -8,9 +8,13 @@ export interface SimpleNationsProps {
 export const SimpleNations = component$<SimpleNationsProps>(({ nations }) => {
   return (
     <>
-      <ul class="lg:grid lg:w-full lg:grid-cols-4 lg:justify-items-stretch lg:gap-4">
+      <ul class="  lg:grid lg:w-full lg:grid-cols-4 lg:justify-items-stretch lg:gap-4">
         {nations.map((nation) => {
-          return <SimpleNation key={nation.id} nation={nation} />;
+          return (
+            <li class="my-5 grid  w-full grid-cols-1 justify-items-center">
+              <SimpleNation key={nation.id} nation={nation} />
+            </li>
+          );
         })}
       </ul>
     </>

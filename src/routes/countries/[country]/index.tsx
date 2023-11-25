@@ -125,7 +125,7 @@ export default component$(() => {
 
   return (
     <>
-      <div class="mb-4  flex w-full     flex-col items-center gap-4 self-center py-8">
+      <div class="mb-4  flex w-full  flex-col    items-center gap-4 self-center px-4 py-8">
         <div class="self-start">
           <BackButton />
         </div>
@@ -138,15 +138,15 @@ export default component$(() => {
             />
           </div>
           <div class="lg:flex lg:w-1/2 lg:flex-col lg:justify-center">
-            <h2 class="mb-4 font-extrabold lg:col-span-2 lg:mb-8 lg:text-4xl">
+            <h2 class="mb-10 mt-8 text-2xl font-extrabold lg:col-span-2 lg:mb-8 lg:text-4xl">
               {nation.official_name}
             </h2>
             <div>
-              <div class="lg:flex lg:justify-between lg:gap-6 lg:text-lg">
-                <ul class="mb-6 lg:w-1/2">
+              <div class=" mb-10 text-lg lg:flex lg:justify-between lg:gap-6 lg:text-lg">
+                <ul class="mb-10 lg:w-1/2">
                   {firstDescription.map((key, index) => {
                     return (
-                      <li key={index}>
+                      <li key={index} class="mb-4">
                         <span class="font-semibold">{fDTitle[index]}</span>:{" "}
                         {nation[key]}
                       </li>
@@ -156,7 +156,7 @@ export default component$(() => {
                 <ul class="mb-6">
                   {secondDescription.map((key, index) => {
                     return (
-                      <li key={index}>
+                      <li key={index} class="mb-4">
                         <span class="font-semibold">{sDTitle[index]}</span>:{" "}
                         {nation[key]}
                       </li>
@@ -167,7 +167,7 @@ export default component$(() => {
             </div>
 
             <div class="mt-3">
-              <h4 class="mb-3 font-semibold">Border Countries:</h4>
+              <h4 class="mb-3 text-xl  font-semibold">Border Countries:</h4>
               <ul class="flex flex-wrap gap-4">
                 {nation.border_nations !== undefined &&
                   nation.border_nations.map((nation) => {

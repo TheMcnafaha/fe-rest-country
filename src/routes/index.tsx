@@ -63,45 +63,9 @@ export default component$(() => {
   const help = useDefaultContries();
   const searchBar = useSearchCountry();
   const getSearch = useNavigate();
-  const nations = useSignal<undefined | TypeNation[]>(undefined);
-  const trigger = useSignal(false);
   if (searchBar.value?.id) {
     getSearch(`/countries/${searchBar.value.id}`);
   }
-
-  useOnDocument(
-    "load",
-    $(async () => {
-      localStorage.setItem("working", "success");
-      const local = localStorage.getItem("nations");
-      if (local === null) {
-        const res = await fetch("https://restcountries.com/v3.1/all");
-        const data = (await res.json()) as QueryResponse;
-        const correct: TypeNation[] = data.map((e) => {
-          return {
-            common_name: e.name.common,
-            id: e.cca3,
-            official_name: e.name.official,
-            region: e.region,
-            capital: e.capital,
-            population: e.population,
-            flag: e.flags.svg,
-          };
-        });
-        nations.value = correct;
-        localStorage.setItem("nations", JSON.stringify(correct));
-      } else {
-        // const magic = await JSON.parse(local);
-        if (nations.value === undefined) {
-          nations.value = JSON.parse(local);
-        }
-      }
-      trigger.value = !trigger.value;
-    }),
-  );
-  useTask$(({ track }) => {
-    track(() => trigger.value);
-  });
   return (
     <>
       <Form action={searchBar}>
