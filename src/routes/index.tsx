@@ -45,14 +45,12 @@ export const useDefaultContries = routeLoader$(async () => {
   const magic = await response.json();
   const nations: TypeNation[] = [];
   for (let index = 0; index < defaults.length; index++) {
-    const res = await fetch(magic[index].flags.svg);
-    const img = await res.text();
     const element = {
       common_name: magic[index].name.common,
       region: magic[index].region,
       capital: magic[index].capital[0],
       population: magic[index].population,
-      flag: img,
+      flag: magic[index].flags.svg,
       official_name: magic[index].name.official,
       id: magic[index].cca3,
     } as TypeNation;
