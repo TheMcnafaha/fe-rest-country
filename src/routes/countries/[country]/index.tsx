@@ -130,11 +130,13 @@ export default component$(() => {
           <BackButton />
         </div>
         <div class="lg:flex lg:w-full lg:justify-between lg:gap-12">
-          <img
-            src={nation.flags.svg}
-            alt={`flag of ${nation.official_name}`}
-            class="  max-h-[300px] max-w-[50%] bg-dark-gray drop-shadow-sm  "
-          />
+          <div class="w-1/2">
+            <img
+              src={nation.flags.svg}
+              alt={`flag of ${nation.official_name}`}
+              class="  max-h-[300px] max-w-full bg-dark-gray drop-shadow-sm  "
+            />
+          </div>
           <div class="lg:flex lg:w-1/2 lg:flex-col lg:justify-center">
             <h2 class="mb-4 font-extrabold lg:col-span-2">
               {nation.official_name}
