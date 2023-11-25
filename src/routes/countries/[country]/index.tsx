@@ -138,12 +138,12 @@ export default component$(() => {
             />
           </div>
           <div class="lg:flex lg:w-1/2 lg:flex-col lg:justify-center">
-            <h2 class="mb-10 mt-8 text-2xl font-extrabold lg:col-span-2 lg:mb-8 lg:text-4xl">
+            <h2 class="mb-10 mt-8 text-2xl font-extrabold lg:col-span-2 lg:mb-8 lg:mt-0 lg:text-4xl">
               {nation.official_name}
             </h2>
             <div>
-              <div class=" mb-10 text-lg lg:flex lg:justify-between lg:gap-6 lg:text-lg">
-                <ul class="mb-10 lg:w-1/2">
+              <div class=" mb-10 text-lg lg:mb-0 lg:flex lg:justify-between lg:gap-6 lg:text-lg">
+                <ul class="mb-10 lg:mb-6 lg:w-1/2">
                   {firstDescription.map((key, index) => {
                     return (
                       <li key={index} class="mb-4">

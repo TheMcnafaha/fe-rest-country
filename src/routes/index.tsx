@@ -1,10 +1,4 @@
-import {
-  component$,
-  useOnDocument,
-  $,
-  useSignal,
-  useTask$,
-} from "@builder.io/qwik";
+import { component$ } from "@builder.io/qwik";
 import {
   routeLoader$,
   type DocumentHead,
@@ -22,7 +16,6 @@ type FailedResponse = {
   status: number;
   message: string;
 };
-type SvgInHtml = HTMLElement & SVGElement;
 export const useSearchCountry = routeAction$(async (props, { fail }) => {
   const response = await fetch(
     "https://restcountries.com/v3.1/name/" + props.query,
@@ -68,11 +61,13 @@ export default component$(() => {
   }
   return (
     <>
-      <Form action={searchBar}>
-        <SearchBar />
-        {searchBar.value?.failed && <p>{searchBar.value.message}</p>}
-      </Form>
-      <CountrySelect />
+      <div class="w-full justify-between lg:flex">
+        <Form action={searchBar}>
+          <SearchBar />
+          {searchBar.value?.failed && <p>{searchBar.value.message}</p>}
+        </Form>
+        <CountrySelect />
+      </div>
       <div class="flex  flex-col items-center px-4 lg:px-0">
         <div class="w-full">
           <SimpleNations nations={help.value}></SimpleNations>

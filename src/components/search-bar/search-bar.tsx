@@ -3,7 +3,7 @@ export const SearchBar = component$(() => {
   return (
     <label
       for="site-search"
-      class="mb-3 flex  rounded-md bg-[white] py-2 pl-4 drop-shadow-sm dark:bg-dark-blue"
+      class="mb-3 flex rounded-md  bg-[white] py-2 pl-4 drop-shadow-sm dark:bg-dark-blue lg:m-0 lg:w-96"
     >
       {" "}
       <img src="glass-31179.svg" height={15} width={15} alt="search" />

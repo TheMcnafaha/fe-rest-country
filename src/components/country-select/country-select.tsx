@@ -9,8 +9,8 @@ SelectRoot;
 export const CountrySelect = component$(() => {
   return (
     <>
-      <div class="z-30 flex w-full font-semibold">
-        <SelectRoot class=" dark:bg-dark-blue flex w-1/2   justify-between self-start rounded-md bg-[white] px-3 py-2 drop-shadow-sm">
+      <div class="z-30 flex w-full font-semibold lg:w-fit ">
+        <SelectRoot class=" flex w-1/2 justify-between self-start  rounded-md bg-[white] px-3 py-2 drop-shadow-sm dark:bg-dark-blue lg:w-[10rem] lg:self-end">
           <SelectTrigger class="flex w-full items-center justify-between text-sm ">
             <SelectValue placeholder="Filter by Region" class="mr-4" />
             <SelectMarker class="flex h-6 w-4 ">
@@ -27,7 +27,7 @@ export const CountrySelect = component$(() => {
               </svg>
             </SelectMarker>
           </SelectTrigger>
-          <SelectListBox class="dark:bg-dark-blue z-30 mt-4 w-full rounded-md bg-[white] drop-shadow-md">
+          <SelectListBox class="z-30 mt-4 w-full rounded-md bg-[white] drop-shadow-md dark:bg-dark-blue">
             <SelectOption optionValue="Orders" class=" z-10 p-4">
               Africa
             </SelectOption>
