@@ -1,4 +1,4 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, useSignal, useTask$ } from "@builder.io/qwik";
 import {
   routeLoader$,
   type DocumentHead,
@@ -32,16 +32,14 @@ export const useDefaultContries = routeLoader$(async () => {
   const query = defaults.reduce((p, c) => {
     return p + "," + c;
   });
-  const response = await fetch(
-    "https://restcountries.com/v3.1/alpha?codes=" + query,
-  );
+  const response = await fetch("https://restcountries.com/v3.1/all");
   const magic = (await response.json()) as QueryResponse;
   const nations: TypeNation[] = [];
-  for (let index = 0; index < defaults.length; index++) {
+  for (let index = 0; index < magic.length; index++) {
     const element = {
       common_name: magic[index].name.common,
       region: magic[index].region,
-      capital: magic[index].capital[0],
+      capital: magic[index].capital,
       population: magic[index].population.toLocaleString("en-US"),
       flag: magic[index].flags.svg,
       official_name: magic[index].name.official,
@@ -49,21 +47,30 @@ export const useDefaultContries = routeLoader$(async () => {
     } as TypeNation;
     nations.push(element);
   }
-
+  nations.sort((a, b) => {
+    return a.common_name.localeCompare(b.common_name);
+  });
   return nations;
 });
 export default component$(() => {
   const help = useDefaultContries();
   const searchBar = useSearchCountry();
   const getSearch = useNavigate();
+  const searchStrg = useSignal("");
   if (searchBar.value?.id) {
     getSearch(`/countries/${searchBar.value.id}`);
   }
+  useTask$(async ({ track }) => {
+    track(() => {
+      searchStrg.value;
+    });
+    console.log("strg is ", searchStrg.value);
+  });
   return (
     <>
       <div class="w-full justify-between lg:flex">
         <Form action={searchBar}>
-          <SearchBar />
+          <SearchBar inputSignal={searchStrg} />
           {searchBar.value?.failed && <p>{searchBar.value.message}</p>}
         </Form>
         <CountrySelect />

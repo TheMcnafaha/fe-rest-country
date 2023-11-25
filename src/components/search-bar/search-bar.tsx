@@ -1,5 +1,8 @@
-import { component$ } from "@builder.io/qwik";
-export const SearchBar = component$(() => {
+import { Signal, component$ } from "@builder.io/qwik";
+export interface SearchBarProps {
+  inputSignal?: Signal<string>;
+}
+export const SearchBar = component$<SearchBarProps>(({ inputSignal }) => {
   return (
     <label
       for="site-search"
@@ -13,6 +16,11 @@ export const SearchBar = component$(() => {
         type="search"
         id="site-search"
         name="query"
+        onKeyUp$={(e) => {
+          if (inputSignal !== undefined) {
+            inputSignal!.value = e.target.value;
+          }
+        }}
       />
     </label>
   );
