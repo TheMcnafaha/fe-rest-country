@@ -16,10 +16,10 @@ export const SimpleNation = component$<SimpleNationProps>(({ nation }) => {
   // const nation = country.value;
   const pointKeys = ["population", "region", "capital"];
   return (
-    <div class=" dark:bg-dark-blue my-4 flex max-w-[260px] flex-col items-center rounded-md bg-[white] pb-4 drop-shadow-sm">
+    <div class=" my-4 flex max-w-[260px] flex-col items-center rounded-md bg-[white] pb-4 drop-shadow-sm dark:bg-dark-blue">
       <div
         style={{ "--image-url": `url(${nation.flag})` }}
-        class="h-[150px] w-full rounded-t-md bg-[image:var(--image-url)] bg-cover bg-center"
+        class=" h-[150px] w-full rounded-t-md bg-dark-gray bg-[image:var(--image-url)] bg-cover bg-center"
       ></div>
       <div class=" p-4">
         <a href={`countries/${nation.id}`} class="z-10">
