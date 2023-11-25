@@ -18,7 +18,8 @@ export const SearchBar = component$<SearchBarProps>(({ inputSignal }) => {
         name="query"
         onKeyUp$={(e) => {
           if (inputSignal !== undefined) {
-            inputSignal!.value = e.target.value;
+            const text = e.target as HTMLInputElement;
+            inputSignal!.value = text.value;
           }
         }}
       />
