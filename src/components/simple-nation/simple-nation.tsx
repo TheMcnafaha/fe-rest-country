@@ -5,7 +5,7 @@ export type TypeNation = {
   official_name: string;
   region: string;
   capital: string;
-  population: number;
+  population: string;
   flag: string;
 };
 

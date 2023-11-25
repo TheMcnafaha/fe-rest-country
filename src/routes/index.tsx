@@ -42,14 +42,14 @@ export const useDefaultContries = routeLoader$(async () => {
   const response = await fetch(
     "https://restcountries.com/v3.1/alpha?codes=" + query,
   );
-  const magic = await response.json();
+  const magic = (await response.json()) as QueryResponse;
   const nations: TypeNation[] = [];
   for (let index = 0; index < defaults.length; index++) {
     const element = {
       common_name: magic[index].name.common,
       region: magic[index].region,
       capital: magic[index].capital[0],
-      population: magic[index].population,
+      population: magic[index].population.toLocaleString("en-US"),
       flag: magic[index].flags.svg,
       official_name: magic[index].name.official,
       id: magic[index].cca3,
@@ -64,7 +64,6 @@ export default component$(() => {
   const searchBar = useSearchCountry();
   const getSearch = useNavigate();
   const nations = useSignal<undefined | TypeNation[]>(undefined);
-  const isArr = nations.value !== undefined;
   const trigger = useSignal(false);
   if (searchBar.value?.id) {
     getSearch(`/countries/${searchBar.value.id}`);

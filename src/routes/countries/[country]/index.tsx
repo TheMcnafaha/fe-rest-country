@@ -33,7 +33,7 @@ type ExtendedNation = {
   region: string;
   sub_region: string;
   capital: string;
-  population: number;
+  population: string;
   flags: {
     png: string;
     svg: string;
@@ -92,7 +92,7 @@ export const useCountryAPI = routeLoader$(async (requestEvent) => {
     sub_region: country[0].subregion,
     region: single.region,
     capital: country[0].capital[0],
-    population: country[0].population,
+    population: country[0].population.toLocaleString("en-US"),
     flags: country[0].flags,
     tld: single.tld[0],
     currencies: toSentence(allCurrencies),
@@ -129,8 +129,8 @@ export default component$(() => {
         <div class="self-start">
           <BackButton />
         </div>
-        <div class="lg:flex lg:w-full lg:justify-between lg:gap-12">
-          <div class="w-1/2">
+        <div class="lg:flex  lg:w-full lg:justify-between lg:gap-12">
+          <div class="lg:flex lg:h-fit lg:w-1/2 ">
             <img
               src={nation.flags.svg}
               alt={`flag of ${nation.official_name}`}
@@ -138,11 +138,11 @@ export default component$(() => {
             />
           </div>
           <div class="lg:flex lg:w-1/2 lg:flex-col lg:justify-center">
-            <h2 class="mb-4 font-extrabold lg:col-span-2">
+            <h2 class="mb-4 font-extrabold lg:col-span-2 lg:text-4xl">
               {nation.official_name}
             </h2>
             <div>
-              <div class="lg:flex lg:gap-6">
+              <div class="lg:flex lg:justify-between lg:gap-6 lg:text-lg">
                 <ul class="mb-6 lg:w-1/2">
                   {firstDescription.map((key, index) => {
                     return (
