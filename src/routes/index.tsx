@@ -22,15 +22,14 @@ type FailedResponse = {
   status: number;
   message: string;
 };
+type SvgInHtml = HTMLElement & SVGElement;
 export const useSearchCountry = routeAction$(async (props, { fail }) => {
-  console.log("me server is le data ", props);
   const response = await fetch(
     "https://restcountries.com/v3.1/name/" + props.query,
   );
   const magic = (await response.json()) as QueryResponse | FailedResponse;
   const isErrObj = Object.keys(magic).length == 2;
   if (isErrObj) {
-    console.log("you suck ", magic);
     return fail(404, { message: "Country not found :(" });
   }
   const bewitched = magic as QueryResponse;
@@ -46,12 +45,14 @@ export const useDefaultContries = routeLoader$(async () => {
   const magic = await response.json();
   const nations: TypeNation[] = [];
   for (let index = 0; index < defaults.length; index++) {
+    const res = await fetch(magic[index].flags.svg);
+    const img = await res.text();
     const element = {
       common_name: magic[index].name.common,
       region: magic[index].region,
       capital: magic[index].capital[0],
       population: magic[index].population,
-      flag: magic[index].flags.svg,
+      flag: img,
       official_name: magic[index].name.official,
       id: magic[index].cca3,
     } as TypeNation;
@@ -67,11 +68,9 @@ export default component$(() => {
   const nations = useSignal<undefined | TypeNation[]>(undefined);
   const isArr = nations.value !== undefined;
   const trigger = useSignal(false);
-  console.log("hlp ", help.value);
   if (searchBar.value?.id) {
     getSearch(`/countries/${searchBar.value.id}`);
   }
-  // console.log(JSON.stringify(help));
 
   useOnDocument(
     "load",
@@ -94,12 +93,9 @@ export default component$(() => {
         });
         nations.value = correct;
         localStorage.setItem("nations", JSON.stringify(correct));
-        console.log("setting cache");
-        console.log(localStorage.getItem("nations"));
       } else {
         // const magic = await JSON.parse(local);
         if (nations.value === undefined) {
-          console.log("loading cache");
           nations.value = JSON.parse(local);
         }
       }
@@ -108,7 +104,6 @@ export default component$(() => {
   );
   useTask$(({ track }) => {
     track(() => trigger.value);
-    console.log("nations are this: ", nations.value);
   });
   return (
     <>
@@ -119,7 +114,7 @@ export default component$(() => {
       <CountrySelect />
       <div class="flex  flex-col items-center px-4 lg:px-0">
         <div class="w-full">
-<SimpleNations nations={help.value}></SimpleNations>
+          <SimpleNations nations={help.value}></SimpleNations>
         </div>
         <h1>Hi 👋</h1>
         <p>
