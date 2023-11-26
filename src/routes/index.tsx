@@ -2,16 +2,13 @@ import { component$, useSignal, useTask$ } from "@builder.io/qwik";
 import {
   routeLoader$,
   type DocumentHead,
-  Form,
   routeAction$,
-  useNavigate,
 } from "@builder.io/qwik-city";
 import { CountrySelect } from "~/components/country-select/country-select";
 import { type TypeNation } from "~/components/simple-nation/simple-nation";
 import { SearchBar } from "~/components/search-bar/search-bar";
 import { SimpleNations } from "~/components/simple-nations/simple-nations";
 import type { QueryResponse } from "./countries/[country]";
-const defaults = ["DEU", "USA", "BRA", "ISL", "AFG", "ALA", "ALB", "DZA"];
 type FailedResponse = {
   status: number;
   message: string;
@@ -29,9 +26,6 @@ export const useSearchCountry = routeAction$(async (props, { fail }) => {
   return { id: bewitched[0].cca3 };
 });
 export const useDefaultContries = routeLoader$(async () => {
-  const query = defaults.reduce((p, c) => {
-    return p + "," + c;
-  });
   const response = await fetch("https://restcountries.com/v3.1/all");
   const magic = (await response.json()) as QueryResponse;
   const nations: TypeNation[] = [];
@@ -54,30 +48,39 @@ export const useDefaultContries = routeLoader$(async () => {
 });
 export default component$(() => {
   const help = useDefaultContries();
-  const searchBar = useSearchCountry();
-  const getSearch = useNavigate();
   const searchStrg = useSignal("");
-  if (searchBar.value?.id) {
-    getSearch(`/countries/${searchBar.value.id}`);
-  }
+  const filteredNations = help.value.filter((nation) => {
+    if (searchStrg.value === "") {
+      return true;
+    }
+    const regions = /^(Africa)|(Asia)|(Americas)|(Europe)|(Oceania)$/;
+    const isRegion = regions.test(searchStrg.value);
+    if (isRegion) {
+      return nation.region === searchStrg.value;
+    }
+    const size = searchStrg.value.length;
+    const search = searchStrg.value.toLowerCase();
+    const isCommonName =
+      nation.common_name.toLowerCase().substring(0, size) === search;
+    const isOfficialName =
+      nation.official_name.toLowerCase().substring(0, size) === search;
+    const isId = nation.id.toLowerCase().substring(0, size) === search;
+    return isCommonName || isOfficialName || isId;
+  });
   useTask$(async ({ track }) => {
     track(() => {
       searchStrg.value;
     });
-    console.log("strg is ", searchStrg.value);
   });
   return (
     <>
       <div class="w-full justify-between lg:flex">
-        <Form action={searchBar}>
-          <SearchBar inputSignal={searchStrg} />
-          {searchBar.value?.failed && <p>{searchBar.value.message}</p>}
-        </Form>
-        <CountrySelect />
+        <SearchBar inputSignal={searchStrg} />
+        <CountrySelect inputSignal={searchStrg} />
       </div>
       <div class="flex  flex-col items-center px-4 lg:px-0">
         <div class="w-full">
-          <SimpleNations nations={help.value}></SimpleNations>
+          <SimpleNations nations={filteredNations}></SimpleNations>
         </div>
       </div>
     </>

@@ -84,7 +84,6 @@ export const useCountryAPI = routeLoader$(async (requestEvent) => {
       return p + ", " + c;
     });
   }
-  console.log("im all ", allLinkNations);
 
   const nation: ExtendedNation = {
     official_name: country[0].name.official,
@@ -121,7 +120,6 @@ export default component$(() => {
 
   const sDTitle = ["Top Level Domain", "Currencies", "Languages"];
   const secondDescription = ["tld", "currencies", "languages"] as const;
-  console.log("my fav nation ", nation);
 
   return (
     <>

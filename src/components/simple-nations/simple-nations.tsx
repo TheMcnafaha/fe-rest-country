@@ -11,7 +11,10 @@ export const SimpleNations = component$<SimpleNationsProps>(({ nations }) => {
       <ul class="  lg:grid lg:w-full lg:grid-cols-4 lg:justify-items-stretch lg:gap-4">
         {nations.map((nation) => {
           return (
-            <li class="my-5 grid  w-full grid-cols-1 justify-items-center">
+            <li
+              key={nation.id}
+              class="my-5 grid  w-full grid-cols-1 justify-items-center"
+            >
               <SimpleNation key={nation.id} nation={nation} />
             </li>
           );
