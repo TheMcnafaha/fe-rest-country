@@ -89,11 +89,11 @@ export default component$(() => {
 
 // <SimpleNation nation={help} />
 export const head: DocumentHead = {
-  title: "Welcome to Qwik",
+  title: "Countries API",
   meta: [
     {
       name: "description",
-      content: "Qwik site description",
+      content: "A frontend mentor challenge",
     },
   ],
 };

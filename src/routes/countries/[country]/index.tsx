@@ -1,5 +1,9 @@
 import { component$ } from "@builder.io/qwik";
-import { routeLoader$ } from "@builder.io/qwik-city";
+import {
+  routeLoader$,
+  type DocumentHead,
+  useLocation,
+} from "@builder.io/qwik-city";
 import { BackButton } from "~/components/back-button/back-button";
 export type QueryObj = {
   name: {
@@ -188,3 +192,12 @@ export default component$(() => {
     </>
   );
 });
+export const head: DocumentHead = {
+  title: `Countries API`,
+  meta: [
+    {
+      name: "description",
+      content: "A frontend mentor challenge",
+    },
+  ],
+};
