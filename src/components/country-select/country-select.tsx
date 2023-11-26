@@ -13,7 +13,7 @@ export const CountrySelect = component$<CountrySelectProps>(
   ({ inputSignal }) => {
     return (
       <>
-        <div class="z-30 flex w-full font-semibold lg:w-fit ">
+        <div class="z-30 flex w-full font-semibold drop-shadow-md lg:w-fit">
           <SelectRoot class=" flex w-1/2 justify-between self-start  rounded-md bg-[white] px-3 py-2 drop-shadow-sm dark:bg-dark-blue lg:w-[10rem] lg:self-end">
             <SelectTrigger
               onFocus$={() => {
