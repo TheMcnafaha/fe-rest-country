@@ -1,9 +1,5 @@
 import { component$ } from "@builder.io/qwik";
-import {
-  routeLoader$,
-  type DocumentHead,
-  useLocation,
-} from "@builder.io/qwik-city";
+import { routeLoader$, type DocumentHead } from "@builder.io/qwik-city";
 import { BackButton } from "~/components/back-button/back-button";
 export type QueryObj = {
   name: {
