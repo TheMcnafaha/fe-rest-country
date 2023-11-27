@@ -20,10 +20,9 @@ export const SimpleNation = component$<SimpleNationProps>(({ nation }) => {
       href={`countries/${nation.id}`}
       class=" my-4 flex w-full max-w-[260px] flex-col items-center rounded-md bg-[white] pb-4 drop-shadow-sm dark:bg-dark-blue"
     >
-      <div
-        style={{ "--image-url": `url(${nation.flag})` }}
-        class=" h-[150px] w-full rounded-t-md bg-dark-gray bg-[image:var(--image-url)] bg-cover bg-center"
-      ></div>
+      <div class="flex h-[150px] max-w-[250px] justify-center overflow-hidden bg-dark-gray">
+        <img class="object-cover" src={nation.flag} alt="ggs" />
+      </div>
       <div class=" self-start px-8 py-4">
         <h3 class="my-2 text-xl font-extrabold">{nation.common_name}</h3>
         <ul class=" ">
