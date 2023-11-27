@@ -1,11 +1,9 @@
 import { component$ } from "@builder.io/qwik";
 import type { TypeNation } from "../simple-nation/simple-nation";
 import { SimpleNation } from "../simple-nation/simple-nation";
-import { routeLoader$ } from "@builder.io/qwik-city";
 export interface SimpleNationsProps {
   nations: TypeNation[];
 }
-export const svgMe = routeLoader$(async (requestEvent) => {});
 export const SimpleNations = component$<SimpleNationsProps>(({ nations }) => {
   return (
     <>
