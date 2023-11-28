@@ -8,6 +8,7 @@ import { type TypeNation } from "~/components/simple-nation/simple-nation";
 import { SearchBar } from "~/components/search-bar/search-bar";
 import { SimpleNations } from "~/components/simple-nations/simple-nations";
 import type { QueryResponse } from "./countries/[country]";
+import { CountrySelect } from "~/components/country-select/country-select";
 type FailedResponse = {
   status: number;
   message: string;
@@ -75,6 +76,7 @@ export default component$(() => {
     <>
       <div class="z-20 w-full justify-between lg:flex">
         <SearchBar inputSignal={searchStrg} />
+        <CountrySelect />
       </div>
       <div class="flex  flex-col items-center px-4 lg:px-0">
         <div class="w-full">
