@@ -76,7 +76,7 @@ export default component$(() => {
     <>
       <div class="z-20 w-full justify-between lg:flex">
         <SearchBar inputSignal={searchStrg} />
-        <CountrySelect />
+        <CountrySelect inputSignal={searchStrg} />
       </div>
       <div class="flex  flex-col items-center px-4 lg:px-0">
         <div class="w-full">
