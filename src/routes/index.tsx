@@ -4,7 +4,6 @@ import {
   type DocumentHead,
   routeAction$,
 } from "@builder.io/qwik-city";
-import { CountrySelect } from "~/components/country-select/country-select";
 import { type TypeNation } from "~/components/simple-nation/simple-nation";
 import { SearchBar } from "~/components/search-bar/search-bar";
 import { SimpleNations } from "~/components/simple-nations/simple-nations";
@@ -74,7 +73,7 @@ export default component$(() => {
   });
   return (
     <>
-      <div class="w-full justify-between lg:flex z-20">
+      <div class="z-20 w-full justify-between lg:flex">
         <SearchBar inputSignal={searchStrg} />
       </div>
       <div class="flex  flex-col items-center px-4 lg:px-0">
