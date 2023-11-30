@@ -1,5 +1,5 @@
 import { component$ } from "@builder.io/qwik";
-import { routeLoader$, type DocumentHead } from "@builder.io/qwik-city";
+import { routeLoader$, type DocumentHead, Link } from "@builder.io/qwik-city";
 import { BackButton } from "~/components/back-button/back-button";
 export type QueryObj = {
   name: {
@@ -170,14 +170,15 @@ export default component$(() => {
                 {nation.border_nations !== undefined &&
                   nation.border_nations.map((nation) => {
                     return (
-                      <a
+                      <Link
                         key={nation.id}
                         href={`/countries/${nation.id}`}
                         class="justify-center rounded-sm bg-[white] px-3 py-1 drop-shadow-md dark:bg-dark-blue lg:text-lg"
+                        prefetch
                       >
                         {" "}
                         <li>{nation.common_name}</li>
-                      </a>
+                      </Link>
                     );
                   })}
               </ul>
