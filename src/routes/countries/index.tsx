@@ -9,7 +9,7 @@ export type CountryResponse = {
   };
   population: number;
   region: string;
-  capital: [string];
+  capital: string;
   flags: {
     svg: string;
   };
