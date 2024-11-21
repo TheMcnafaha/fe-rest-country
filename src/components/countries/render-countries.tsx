@@ -1,5 +1,5 @@
 import { component$ } from "@builder.io/qwik";
-import { CountryResponse } from "~/routes/countries";
+import { CountryResponse } from "~/routes/layout";
 
 export type RenderCountriesProps = { countries: Array<CountryResponse> };
 export const RenderCountries = component$<RenderCountriesProps>(
@@ -25,7 +25,7 @@ const SingleCountry = component$<SingleCountryProps>(({ country }) => {
         alt={`flag of ${country.name.official}`}
       />
       <div class="pl-6 pt-6">
-        <h3 class="text-lg font-bold">{country.name.official}</h3>
+        <SPANav heading={country.name.official} cca3={country.cca3} />
         <Description heading="Population" text={country.population} />
         <Description heading="Region" text={country.region} />
         <Description heading="Capital" text={country.capital} />
@@ -43,5 +43,19 @@ const Description = component$<DescriptionProps>(({ heading, text }) => {
     <p class="text-sm">
       <span class=" font-semibold">{heading}</span>: {text}
     </p>
+  );
+});
+
+type SPANavProps = {
+  heading: string;
+  cca3: string;
+};
+const SPANav = component$<SPANavProps>(({ heading, cca3 }) => {
+  return (
+    <h3 class="mb-2 text-lg font-bold">
+      <a href={`/countries/${cca3}`}>
+        <span class=" font-bold">{heading}</span>
+      </a>
+    </h3>
   );
 });

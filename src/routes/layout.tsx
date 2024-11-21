@@ -1,5 +1,11 @@
-import { component$, Slot } from "@builder.io/qwik";
-import type { RequestHandler } from "@builder.io/qwik-city";
+import {
+  component$,
+  createContextId,
+  Signal,
+  Slot,
+  useContextProvider,
+} from "@builder.io/qwik";
+import { routeLoader$, type RequestHandler } from "@builder.io/qwik-city";
 
 export const onGet: RequestHandler = async ({ cacheControl }) => {
   // Control caching for this request for best performance and to reduce hosting costs:
@@ -12,7 +18,42 @@ export const onGet: RequestHandler = async ({ cacheControl }) => {
   });
 };
 
+export type CountryResponse = {
+  name: {
+    common: string;
+    official: string;
+    native: string;
+  };
+  population: number;
+  region: string;
+  subregion: string;
+  capital: string;
+  flags: {
+    svg: string;
+  };
+  tld: string;
+  currencies: {
+    [x: string]: { name: string };
+  };
+  languages: {
+    [x: string]: string;
+  };
+  borders?: Array<string>;
+  cca3: string;
+};
+
+export const useAllCountries = routeLoader$(async () => {
+  const queryString = "https://restcountries.com/v3.1/all";
+  const res = await fetch(queryString);
+  const data = await res.json();
+  return data as Array<CountryResponse>;
+});
+export const AllCountriesContext =
+  createContextId<Signal<CountryResponse[]>>("all.country-data");
 export default component$(() => {
+  const allCountriesSig = useAllCountries();
+
+  useContextProvider(AllCountriesContext, allCountriesSig);
   return (
     <>
       <div class="flex flex-col items-center">
