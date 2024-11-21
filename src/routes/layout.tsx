@@ -22,7 +22,9 @@ export type CountryResponse = {
   name: {
     common: string;
     official: string;
-    native: string;
+    nativeName: {
+      [language: string]: { official: string; common: string };
+    };
   };
   population: number;
   region: string;
@@ -42,10 +44,22 @@ export type CountryResponse = {
   cca3: string;
 };
 
-export const useAllCountries = routeLoader$(async () => {
+export const useAllCountries = routeLoader$(async ({ cacheControl }) => {
+  cacheControl({
+    // Always serve a cached response by default, up to a week stale
+    staleWhileRevalidate: 60 * 60 * 24 * 7,
+    // Max once every 5 seconds, revalidate on the server to get a fresh version of this page
+    maxAge: 60,
+  });
+
+  const delay = (timeout: number) => {
+    return new Promise((res) => setTimeout(res, timeout));
+  };
   const queryString = "https://restcountries.com/v3.1/all";
   const res = await fetch(queryString);
   const data = await res.json();
+  await delay(4_000);
+  console.log("MyData " + Math.random());
   return data as Array<CountryResponse>;
 });
 export const AllCountriesContext =
