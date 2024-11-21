@@ -15,13 +15,17 @@ export const onGet: RequestHandler = async ({ cacheControl }) => {
 export default component$(() => {
   return (
     <>
-      <div class="bg-light-gray">
-        <header class="flex justify-between bg-white px-3 py-6">
-          <h1>Where in the world?</h1>
-          <p>Dark Mode</p>
+      <div class="flex flex-col items-center">
+        <header class="  flex w-full justify-center bg-white px-3 py-6">
+          <div class="flex w-full max-w-md   justify-between">
+            <h1>Where in the world?</h1>
+            <p>Dark Mode</p>
+          </div>
         </header>
-        <main class="py-3">
-          <Slot />
+        <main class="py-3 ">
+          <div class=" flex max-w-md flex-col items-center">
+            <Slot />
+          </div>
         </main>
       </div>
     </>

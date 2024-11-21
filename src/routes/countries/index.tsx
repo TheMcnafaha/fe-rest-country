@@ -6,13 +6,23 @@ export type CountryResponse = {
   name: {
     common: string;
     official: string;
+    native: string;
   };
   population: number;
   region: string;
+  subregion: string;
   capital: string;
   flags: {
     svg: string;
   };
+  tld: string;
+  currencies: {
+    [x: string]: { name: string };
+  };
+  languages: {
+    [x: string]: string;
+  };
+  borders?: Array<string>;
 };
 
 export const useAllCountries = routeLoader$(async () => {
