@@ -1,10 +1,11 @@
-import { component$, useSignal, useTask$ } from "@builder.io/qwik";
-import { type CountryResponse } from "~/routes/layout";
+import { component$ } from "@builder.io/qwik";
 import { Description } from "../description/description";
+import { CountryResponse } from "~/routes/layout";
 
 export type RenderCountriesProps = { countries: Array<CountryResponse> };
 export const RenderCountries = component$<RenderCountriesProps>(
   ({ countries }) => {
+    console.log("COUNTRIES ", countries);
     return (
       <div class="flex flex-col gap-8 px-3">
         {countries.map((country) => {

@@ -1,7 +1,7 @@
 import { component$, useContext } from "@builder.io/qwik";
 import { useLocation } from "@builder.io/qwik-city";
 import { Description } from "~/components/description/description";
-import { AllCountriesContext } from "~/routes/layout";
+import { AllCountriesContext } from "../layout";
 
 export default component$(() => {
   const allCountriesSig = useContext(AllCountriesContext);

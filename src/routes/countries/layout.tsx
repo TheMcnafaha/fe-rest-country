@@ -1,5 +1,12 @@
-import { component$, Slot } from "@builder.io/qwik";
-import { type RequestHandler } from "@builder.io/qwik-city";
+import {
+  component$,
+  createContextId,
+  Resource,
+  Signal,
+  Slot,
+} from "@builder.io/qwik";
+import { routeLoader$, type RequestHandler } from "@builder.io/qwik-city";
+import { ContextWrapper } from "~/components/countries/context-wrapper";
 
 export const onGet: RequestHandler = async ({ cacheControl }) => {
   // Control caching for this request for best performance and to reduce hosting costs:
@@ -38,22 +45,30 @@ export type CountryResponse = {
   cca3: string;
 };
 
+export const useAllCountries = routeLoader$(() => {
+  return async () => {
+    const queryString = "https://restcountries.com/v3.1/all";
+    const res = await fetch(queryString);
+    const data = await res.json();
+    return data as Array<CountryResponse>;
+  };
+});
+export const AllCountriesContext =
+  createContextId<Signal<CountryResponse[]>>("all.country-data");
 export default component$(() => {
+  const allCountriesSig = useAllCountries();
   return (
-    <>
-      <div class="flex flex-col items-center">
-        <header class="  flex w-full justify-center bg-white px-3 py-6">
-          <div class="flex w-full max-w-md   justify-between">
-            <h1>Where in the world?</h1>
-            <p>Dark Mode</p>
-          </div>
-        </header>
-        <main class="py-3 ">
-          <div class=" flex max-w-md flex-col items-center">
-            <Slot />
-          </div>{" "}
-        </main>{" "}
-      </div>
-    </>
+    <div class="bg-red-400 p-3">
+      <Resource
+        value={allCountriesSig}
+        onResolved={(data) => {
+          return (
+            <ContextWrapper context={data}>
+              <Slot />
+            </ContextWrapper>
+          );
+        }}
+      />{" "}
+    </div>
   );
 });
