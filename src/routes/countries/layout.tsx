@@ -45,30 +45,12 @@ export type CountryResponse = {
   cca3: string;
 };
 
-export const useAllCountries = routeLoader$(() => {
-  return async () => {
-    const queryString = "https://restcountries.com/v3.1/all";
-    const res = await fetch(queryString);
-    const data = await res.json();
-    return data as Array<CountryResponse>;
-  };
-});
-export const AllCountriesContext =
-  createContextId<Signal<CountryResponse[]>>("all.country-data");
 export default component$(() => {
-  const allCountriesSig = useAllCountries();
   return (
     <div class="bg-red-400 p-3">
-      <Resource
-        value={allCountriesSig}
-        onResolved={(data) => {
-          return (
-            <ContextWrapper context={data}>
-              <Slot />
-            </ContextWrapper>
-          );
-        }}
-      />{" "}
+      <ContextWrapper>
+        <Slot />
+      </ContextWrapper>
     </div>
   );
 });
