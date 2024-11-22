@@ -1,5 +1,5 @@
-import { component$ } from "@builder.io/qwik";
-import { CountryResponse } from "~/routes/layout";
+import { component$, useSignal, useTask$ } from "@builder.io/qwik";
+import { type CountryResponse } from "~/routes/layout";
 import { Description } from "../description/description";
 
 export type RenderCountriesProps = { countries: Array<CountryResponse> };
@@ -8,7 +8,7 @@ export const RenderCountries = component$<RenderCountriesProps>(
     return (
       <div class="flex flex-col gap-8 px-3">
         {countries.map((country) => {
-          return <SingleCountry country={country} />;
+          return <SingleCountry key={country.cca3} country={country} />;
         })}
       </div>
     );
@@ -21,7 +21,11 @@ const SingleCountry = component$<SingleCountryProps>(({ country }) => {
   return (
     <article class="grid max-h-96 max-w-sm grid-rows-2 rounded-b-md bg-white ">
       <img
-        class="h-full w-full rounded-t-md object-cover"
+        class="h-full  rounded-t-md object-cover"
+        loading="lazy"
+        decoding="async"
+        width={384}
+        height={192}
         src={country.flags.svg}
         alt={`flag of ${country.name.official}`}
       />
