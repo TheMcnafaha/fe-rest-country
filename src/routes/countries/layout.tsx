@@ -50,6 +50,9 @@ export const useAllCountries = routeLoader$(() => {
     const queryString = "https://restcountries.com/v3.1/all";
     const res = await fetch(queryString);
     const data = await res.json();
+    const date = new Date();
+    console.log("QUERYING: ", date.toLocaleTimeString());
+
     return data as Array<CountryResponse>;
   };
 });
