@@ -25,7 +25,6 @@ export default component$(() => {
   const inlinedCurrs = allCurrs.reduce((p, n) => {
     return p.concat(", ", n);
   });
-  console.log(country.borders);
 
   return (
     <div>

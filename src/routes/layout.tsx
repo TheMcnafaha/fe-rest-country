@@ -1,5 +1,6 @@
 import { component$, Slot } from "@builder.io/qwik";
 import { type RequestHandler } from "@builder.io/qwik-city";
+import { ContextWrapper } from "~/components/countries/context-wrapper";
 
 export const onGet: RequestHandler = async ({ cacheControl }) => {
   // Control caching for this request for best performance and to reduce hosting costs:
@@ -50,7 +51,9 @@ export default component$(() => {
         </header>
         <main class="py-3 ">
           <div class=" flex max-w-md flex-col items-center">
-            <Slot />
+            <ContextWrapper>
+              <Slot />
+            </ContextWrapper>
           </div>{" "}
         </main>{" "}
       </div>

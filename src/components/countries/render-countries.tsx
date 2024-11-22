@@ -6,7 +6,6 @@ import { Link } from "@builder.io/qwik-city";
 export type RenderCountriesProps = { countries: Array<CountryResponse> };
 export const RenderCountries = component$<RenderCountriesProps>(
   ({ countries }) => {
-    console.log("COUNTRIES ", countries);
     return (
       <div class="flex flex-col gap-8 px-3">
         {countries.map((country) => {

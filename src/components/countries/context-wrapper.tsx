@@ -17,7 +17,8 @@ export const ContextWrapper = component$(() => {
     const queryString = "https://restcountries.com/v3.1/all";
     const res = await fetch(queryString);
     const data = await res.json();
-    console.log("all data: ", data);
+    const date = new Date();
+    console.log("QUERYING: ", date.toLocaleTimeString());
     allCountriesSig.value = data;
   });
   useContextProvider(AllCountriesContext, allCountriesSig);
