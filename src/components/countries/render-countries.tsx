@@ -1,6 +1,7 @@
 import { component$ } from "@builder.io/qwik";
 import { Description } from "../description/description";
 import { CountryResponse } from "~/routes/layout";
+import { Link } from "@builder.io/qwik-city";
 
 export type RenderCountriesProps = { countries: Array<CountryResponse> };
 export const RenderCountries = component$<RenderCountriesProps>(
@@ -49,9 +50,9 @@ type SPANavProps = {
 const SPANav = component$<SPANavProps>(({ heading, cca3 }) => {
   return (
     <h3 class="mb-2 text-lg font-bold">
-      <a href={`/countries/${cca3}`}>
+      <Link href={`/countries/${cca3}`}>
         <span class=" font-bold">{heading}</span>
-      </a>
+      </Link>
     </h3>
   );
 });
