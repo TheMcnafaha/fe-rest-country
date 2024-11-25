@@ -20,7 +20,7 @@ type SingleCountryProps = {
 };
 const SingleCountry = component$<SingleCountryProps>(({ country }) => {
   return (
-    <article class="grid max-h-96 max-w-sm grid-rows-2 rounded-b-md bg-white ">
+    <article class="grid h-96  max-w-sm grid-rows-2 rounded-b-md rounded-t-md bg-white ">
       <img
         class="h-full  rounded-t-md object-cover"
         loading="lazy"
@@ -30,7 +30,7 @@ const SingleCountry = component$<SingleCountryProps>(({ country }) => {
         src={country.flags.svg}
         alt={`flag of ${country.name.official}`}
       />
-      <div class="pl-6 pt-6">
+      <div class="py-6 pl-6 pr-2">
         <SPANav heading={country.name.official} cca3={country.cca3} />
         <ul>
           <Description heading="Population" text={country.population} />
