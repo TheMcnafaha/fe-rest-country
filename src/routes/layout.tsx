@@ -1,5 +1,5 @@
 import { component$, Slot } from "@builder.io/qwik";
-import { type RequestHandler } from "@builder.io/qwik-city";
+import { Link, type RequestHandler } from "@builder.io/qwik-city";
 import { ContextWrapper } from "~/components/countries/context-wrapper";
 
 export const onGet: RequestHandler = async ({ cacheControl }) => {
@@ -45,7 +45,9 @@ export default component$(() => {
       <div class="flex flex-col items-center">
         <header class="  flex w-full justify-center bg-white px-3 py-6">
           <div class="flex w-full max-w-md   justify-between">
-            <h1>Where in the world?</h1>
+            <h1>
+              <Link href="/countries"> Where in the world?</Link>
+            </h1>
             <p>Dark Mode</p>
           </div>
         </header>
