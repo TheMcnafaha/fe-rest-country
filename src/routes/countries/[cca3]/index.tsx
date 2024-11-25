@@ -1,5 +1,5 @@
 import { component$, useContext } from "@builder.io/qwik";
-import { useLocation } from "@builder.io/qwik-city";
+import { Link, useLocation } from "@builder.io/qwik-city";
 import { AllCountriesContext } from "~/components/countries/context-wrapper";
 import { Description } from "~/components/description/description";
 
@@ -49,7 +49,9 @@ export default component$(() => {
       {country.borders && (
         <ul class="flex gap-4">
           {country.borders.map((country) => (
-            <li>{country}</li>
+            <li>
+              <Link href={`/countries/${country}`}>{country}</Link>
+            </li>
           ))}
         </ul>
       )}
