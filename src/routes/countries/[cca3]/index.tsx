@@ -44,7 +44,7 @@ export default component$(() => {
           alt={`flag of ${country.name.official}`}
         />
       </div>
-      <h3 class="text-2xl font-bold">{country.name.common}</h3>
+      <h3 class="text-2xl font-bold">{country.name.official}</h3>
       <ul class="w-[320px]">
         <Description
           heading={allNativeNames.length === 1 ? "Native Name" : "Native Names"}

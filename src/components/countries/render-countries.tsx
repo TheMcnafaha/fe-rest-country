@@ -30,8 +30,8 @@ const SingleCountry = component$<SingleCountryProps>(({ country }) => {
         src={country.flags.svg}
         alt={`flag of ${country.name.official}`}
       />
-      <div class="py-6 pl-6 pr-2">
-        <SPANav heading={country.name.official} cca3={country.cca3} />
+      <div class="border-t-2 py-6 pl-6 pr-2">
+        <SPANav heading={country.name.common} cca3={country.cca3} />
         <ul>
           <Description heading="Population" text={country.population} />
           <Description heading="Region" text={country.region} />
