@@ -68,7 +68,7 @@ export default component$(() => {
         {country.borders && (
           <ul class="flex flex-wrap gap-4">
             {country.borders.map((country) => (
-              <li>
+              <li key={country}>
                 <Link href={`/countries/${country}`}>{country}</Link>
               </li>
             ))}

@@ -1,6 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 import { Description } from "../description/description";
-import { CountryResponse } from "~/routes/layout";
+import { type CountryResponse } from "~/routes/layout";
 import { Link } from "@builder.io/qwik-city";
 
 export type RenderCountriesProps = { countries: Array<CountryResponse> };

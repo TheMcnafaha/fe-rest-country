@@ -1,5 +1,5 @@
 import {
-  Signal,
+  type Signal,
   Slot,
   component$,
   createContextId,
@@ -7,7 +7,7 @@ import {
   useSignal,
   useTask$,
 } from "@builder.io/qwik";
-import { CountryResponse } from "~/routes/layout";
+import { type CountryResponse } from "~/routes/layout";
 
 export const AllCountriesContext =
   createContextId<Signal<CountryResponse[]>>("all.country-data");
