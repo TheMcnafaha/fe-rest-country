@@ -42,7 +42,7 @@ export type CountryResponse = {
 export default component$(() => {
   return (
     <>
-      <div class="flex flex-col items-center">
+      <div class="flex min-h-screen flex-col items-center bg-light-gray">
         <header class="  flex w-full justify-center bg-white px-3 py-6">
           <div class="flex w-full max-w-md   justify-between">
             <h1>
@@ -51,13 +51,13 @@ export default component$(() => {
             <p>Dark Mode</p>
           </div>
         </header>
-        <main class="py-3 ">
+        <main class="py-3">
           <div class=" flex max-w-md flex-col items-center">
             <ContextWrapper>
               <Slot />
             </ContextWrapper>
-          </div>{" "}
-        </main>{" "}
+          </div>
+        </main>
       </div>
     </>
   );

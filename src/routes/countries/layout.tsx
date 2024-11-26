@@ -40,7 +40,7 @@ export type CountryResponse = {
 
 export default component$(() => {
   return (
-    <div class="bg-red-400 p-3">
+    <div class=" p-3">
       <Slot />
     </div>
   );

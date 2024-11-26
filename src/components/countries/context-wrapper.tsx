@@ -38,7 +38,7 @@ export const ContextWrapper = component$(() => {
   });
   useContextProvider(AllCountriesContext, allCountriesSig);
   return (
-    <div class="bg-blue-500 p-4">
+    <div class="p-4">
       <Slot />
     </div>
   );
