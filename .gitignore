@@ -46,3 +46,4 @@ lerna-debug.log*
 
 playwright i think
 playwright-report/
+test-results/
