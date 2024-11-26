@@ -30,9 +30,8 @@ export default component$(() => {
   const inlinedLangs = allLangs.reduce((p, n) => {
     return p.concat(", ", n);
   });
-  console.log(" COUNTREY: ", allLangs);
   return (
-    <div class="flex flex-col gap-4 ">
+    <div class="flex max-w-xs flex-col gap-4">
       <div class="h-[220px] w-[320px]">
         <img
           class="h-full object-contain"
