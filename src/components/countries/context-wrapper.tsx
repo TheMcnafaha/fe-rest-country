@@ -9,10 +9,13 @@ import {
 } from "@builder.io/qwik";
 import { type CountryResponse } from "~/routes/layout";
 
+export const SearchStringContext =
+  createContextId<Signal<string>>("search.strg");
 export const AllCountriesContext =
   createContextId<Signal<CountryResponse[]>>("all.country-data");
 export const ContextWrapper = component$(() => {
   const allCountriesSig = useSignal<CountryResponse[]>([]);
+  const searchStrgSig = useSignal("");
   useTask$(async () => {
     let json;
 
@@ -36,6 +39,7 @@ export const ContextWrapper = component$(() => {
       allCountriesSig.value = json;
     }
   });
+  useContextProvider(SearchStringContext, searchStrgSig);
   useContextProvider(AllCountriesContext, allCountriesSig);
   return (
     <div class="p-4">
