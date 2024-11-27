@@ -23,7 +23,7 @@ export const ContextWrapper = component$(() => {
       const response = await fetch(
         "https://restcountries.com/v3.1/all?fields=name,flags,population,region,subregion,capital,tld,languages,borders,cca3,currencies",
       );
-      json = await response.json();
+      json = (await response.json()) as CountryResponse[];
     } catch (error) {
       if (error instanceof SyntaxError) {
         // Unexpected token < in JSON
@@ -36,6 +36,17 @@ export const ContextWrapper = component$(() => {
     if (json) {
       const date = new Date();
       console.log("QUERYING: ", date.toLocaleTimeString());
+      json.sort((a, b) => {
+        const nameA = a.name.common.toUpperCase(); // ignore upper and lowercase
+        const nameB = b.name.common.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        return 0;
+      });
       allCountriesSig.value = json;
     }
   });
