@@ -2,7 +2,7 @@ import { component$, useContext } from "@builder.io/qwik";
 import { SearchStringContext } from "../countries/context-wrapper";
 
 type SearchBarProps = {};
-export const SearchBar = component$<SearchBarProps>((props) => {
+export const SearchBar = component$<SearchBarProps>(() => {
   const searchStrgSig = useContext(SearchStringContext);
   return (
     <div class="bg-red-400">
