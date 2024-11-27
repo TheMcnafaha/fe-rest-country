@@ -5,6 +5,7 @@ import {
 } from "~/components/countries/context-wrapper";
 import { RenderCountries } from "~/components/countries/render-countries";
 import { SearchBar } from "~/components/search-bar/search-bar";
+import softMatchChildParentStrg from "~/utils/countries-search";
 
 export default component$(() => {
   const allCountriesSig = useContext(AllCountriesContext);
@@ -14,14 +15,16 @@ export default component$(() => {
       ? allCountriesSig.value
       : allCountriesSig.value.filter((country) => {
         const { value } = searchStrgSig;
-        const searchLength = value.length;
         const validCC3 = country.cca3 === value.toUpperCase();
-        const hasCommonName =
-          country.name.common.slice(0, searchLength).toUpperCase() ===
-          value.toUpperCase();
-        const hasOfficialName =
-          country.name.official.slice(0, searchLength).toUpperCase() ===
-          value.toUpperCase();
+        const hasCommonName = softMatchChildParentStrg(
+          value.toUpperCase(),
+          country.name.common.toUpperCase(),
+        );
+        const hasOfficialName = softMatchChildParentStrg(
+          value.toUpperCase(),
+          country.name.official.toUpperCase(),
+        );
+
         if (validCC3 || hasCommonName || hasOfficialName) {
           return country;
         }
